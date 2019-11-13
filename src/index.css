@@ -1,0 +1,129 @@
+*, ::after, ::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #034EB9;
+    font-size: 1rem;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 100vh;
+}
+.box-1 {
+    flex: 0 0 50%;
+}
+.box-2 {
+    flex: 0 0 50%;
+}
+.box-clock {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.box-circles {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.circle {
+    width: 300px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: relative;
+    border: .35rem solid #000;
+    margin: 20px;
+}
+.circle::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: .35rem solid #fff;
+    box-shadow: inset 0 0 2rem rgba(0, 0, 0, .5);
+}
+.circle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5%;
+    height: 5%;
+    background-color: #DE6D43;
+    border-radius: 50%;
+    z-index: 11;
+}
+.hand {
+    position: absolute;
+    bottom: 50%;
+    transform-origin: bottom center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    z-index: 10;
+}
+.hours {
+    left: 48.5%;
+    width: 3%;
+    height: 25%;
+    background-color: #034EB9;
+}
+.minuts {
+    left: 49%;
+    width: 2%;
+    height: 35%;
+    background-color: #4383DE;
+}
+.seconds {
+    left: 49.5%;
+    width: 1%;
+    height: 40%;
+    background-color: #DE6D43;
+}
+.indicator {
+    --deg: 0deg;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(var(--deg));
+    width: 1%;
+    height: 90%;
+    border-top: .75rem solid #000;
+    border-bottom: .75rem solid #000;
+    z-index: 1;
+}
+.indicator.indicator1 { --deg: 0deg; }
+.indicator.indicator2 { --deg: 30deg; }
+.indicator.indicator3 { --deg: 60deg; }
+.indicator.indicator4 { --deg: 90deg; }
+.indicator.indicator5 { --deg: 120deg; }
+.indicator.indicator6 { --deg: 150deg; }
+
+.city {
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.box-clock-add {
+    text-align: right;
+}
+.box-clock-add button {
+    background: sandybrown;
+    border: none;
+    margin: 20px;
+    padding: 5px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #fff;
+}
