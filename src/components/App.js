@@ -7,7 +7,8 @@ export default class App extends Component {
 
         const initialClock = {
             type: 'analog',
-            timezone: 'local'
+            timezone: 'local',
+            city: 'Local'
         };
         const data = localStorage.getItem('clock') ? JSON.parse(localStorage.getItem('clock')) : [initialClock];
 
@@ -18,16 +19,19 @@ export default class App extends Component {
 
     addClock = (clock) => {
         const newClock = [...this.state.clock, clock];
-        localStorage.setItem('clock', JSON.stringify(newClock));
-        this.setState({clock: newClock});
+        this.updateState(newClock);
     }
 
     removeClock = (index) => {
         const newClock = this.state.clock.filter((_, i) => {
             return index !== i;
         });
-        localStorage.setItem('clock', JSON.stringify(newClock));
-        this.setState({clock: newClock});
+        this.updateState(newClock);
+    }
+
+    updateState(data) {
+        localStorage.setItem('clock', JSON.stringify(data));
+        this.setState({clock: data});
     }
     
     render() {

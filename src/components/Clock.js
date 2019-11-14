@@ -4,13 +4,14 @@ import ClockAnalog from './ClockAnalog';
 export default class Clock extends Component {
     render() {
         const clock = this.props.clock.map((item, index) => {
-            const {type, timezone} = item;
+            const {type, timezone, city} = item;
 
             if (type === 'analog') {
                 return (
                     <ClockAnalog 
                         key={index}
                         timezone={timezone}
+                        city={city}
                         index={index}
                         removeClock={this.props.removeClock}
                     />
@@ -26,7 +27,8 @@ export default class Clock extends Component {
                     {clock}
                 </div>
                 <div className='box-clock-add'>
-                    <button onClick={() => this.props.addClock({type: 'analog', timezone: 3})}>Add</button>
+                    <button onClick={() => this.props.addClock({type: 'analog', timezone: 3, city: 'Kiev'})}>Add</button>
+                    <button onClick={() => this.props.addClock({type: 'analog', timezone: 4, city: 'Minsk'})}>Add</button>
                 </div>
             </div>
         )

@@ -52,25 +52,28 @@ export default class ClockAnalog extends Component {
     
     renderAnalog() {
         const {hoursDeg, minutsDeg, secondsDeg} = this.state;
+        const secondHand = this.props.index === 0 ? 
+            <div className="hand seconds" style={{transform: `rotate(${secondsDeg}deg)`}}></div> : null;
         const indicators = this.renderIndicator();
 
         return (
             <div className="circle">
                 <div className="hand hours" style={{transform: `rotate(${hoursDeg}deg)`}}></div>
                 <div className="hand minuts" style={{transform: `rotate(${minutsDeg}deg)`}}></div>
-                <div className="hand seconds" style={{transform: `rotate(${secondsDeg}deg)`}}></div>
+                {secondHand}
                 {indicators}
             </div>
         )
     }
     
     render() {
+        const {city, removeClock} = this.props;
         const clock = this.renderAnalog();
         
         return (
             <div>
                 {clock}
-                <div className='city' onClick={() => this.props.removeClock(this.props.index)}>Tokio</div>
+                <div className='city' onClick={() => removeClock(this.props.index)}>{city}</div>
             </div>
         )
     }
