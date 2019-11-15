@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import ClockAnalog from './ClockAnalog';
 
 export default class Clock extends Component {
+    state = {
+        showCities: false
+    }
+    
     renderClock() {
         const clock = this.props.clock.map((item, index) => {
             const {type, city, timezone} = item;
@@ -28,15 +32,33 @@ export default class Clock extends Component {
         const cities = this.props.cities.map((item, index) => {
             const {city, timezone} = item;
 
-            return <li key={index}>{city + timezone}</li>
+            return (
+                <li 
+                    key={index}
+                    onClick={() => {
+                        this.props.addClock({type: 'analog', city, timezone});
+                        this.toggleCities();
+                    }}
+                >
+                    <span>{city}</span>
+                    {' '}
+                    <span>{timezone}</span>
+                </li>
+            )
         });
 
-        return <ul>{cities}</ul>
+        return <ul className='box-clock-cities'>{cities}</ul>
+    }
+
+    toggleCities = () => {
+        this.setState({
+            showCities: !this.state.showCities
+        })
     }
     
     render() {
         const clock = this.renderClock();
-        const cities = this.renderCities();
+        const cities = this.state.showCities ? this.renderCities() : null;
         
         return (
             <div className='box-clock'>
@@ -45,8 +67,7 @@ export default class Clock extends Component {
                 </div>
                 <div className='box-clock-add'>
                     {cities}
-                    <button onClick={() => this.props.addClock({type: 'analog', timezone: '3', city: 'Kiev'})}>Add</button>
-                    <button onClick={() => this.props.addClock({type: 'analog', timezone: '4', city: 'Minsk'})}>Add</button>
+                    <button onClick={this.toggleCities}>Add</button>
                 </div>
             </div>
         )

@@ -7,8 +7,8 @@ export default class App extends Component {
 
         this.cities = [
             {city: 'Local', timezone: 'local'},
-            {city: 'London ', timezone: '0'},
-            {city: 'Tokyo ', timezone: '+9'},
+            {city: 'London', timezone: '0'},
+            {city: 'Tokyo', timezone: '+9'},
             {city: 'New York ', timezone: '-5'}
         ];
 

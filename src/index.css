@@ -6,6 +6,7 @@
 body {
     background-color: #034EB9;
     font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .box {
@@ -117,6 +118,22 @@ body {
 
 .box-clock-add {
     text-align: right;
+    position: relative;
+}
+.box-clock-cities {
+    position: absolute;
+    bottom: 100%;
+    right: 2%;
+    background: sandybrown;
+    padding: 10px;
+    text-align: left;
+    color: #fff;
+    list-style: none;
+    font-size: 1.2rem;
+    z-index: 200;
+}
+.box-clock-cities li {
+    cursor: pointer;
 }
 .box-clock-add button {
     background: sandybrown;
@@ -126,4 +143,5 @@ body {
     border-radius: 6px;
     font-size: 1rem;
     color: #fff;
+    cursor: pointer;
 }
