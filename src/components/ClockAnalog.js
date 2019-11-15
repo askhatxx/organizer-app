@@ -67,13 +67,14 @@ export default class ClockAnalog extends Component {
     }
     
     render() {
-        const {city, removeClock} = this.props;
+        const {city, removeClock, index} = this.props;
         const clock = this.renderAnalog();
         
         return (
-            <div>
+            <div className='box-circle'>
                 {clock}
-                <div className='city' onClick={() => removeClock(this.props.index)}>{city}</div>
+                <div className='city'>{city}</div>
+                <div className='remove-clock' onClick={() => removeClock(index)}></div>
             </div>
         )
     }

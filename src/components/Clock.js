@@ -42,7 +42,7 @@ export default class Clock extends Component {
                 >
                     <span>{city}</span>
                     {' '}
-                    <span>{timezone}</span>
+                   {timezone !== 'local' &&  <span>{timezone}</span>}
                 </li>
             )
         });
