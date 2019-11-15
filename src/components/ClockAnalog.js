@@ -36,7 +36,7 @@ export default class ClockAnalog extends Component {
     }
 
     getDeg(date) {
-        date.setUTCHours(date.getUTCHours() + this.timezone);
+        date.setUTCHours(date.getUTCHours() + Number(this.timezone));
         const hoursDeg = date.getUTCHours() * 30 + (date.getUTCMinutes() / 60 * 30);
         const minutsDeg = date.getUTCMinutes() * 6;
         const secondsDeg = date.getUTCSeconds() * 6;
