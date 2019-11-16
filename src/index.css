@@ -21,6 +21,7 @@ body {
 .box-2 {
     flex: 0 0 50%;
 }
+
 .box-clock {
     display: flex;
     flex-direction: column;
@@ -150,9 +151,9 @@ body {
 .box-clock-cities {
     position: absolute;
     bottom: 100%;
-    right: 2%;
+    right: 20px;
     background: sandybrown;
-    padding: 10px;
+    padding: 5px;
     text-align: left;
     color: #fff;
     list-style: none;
@@ -161,14 +162,34 @@ body {
 }
 .box-clock-cities li {
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 8px 5px;
+}
+.box-clock-cities li:hover {
+    background: cornsilk;
+    color: sandybrown;
+}
+.box-clock-cities li .timezone {
+    margin-left: 20px;
 }
 .box-clock-add button {
     background: sandybrown;
     border: none;
     margin: 20px;
-    padding: 5px 20px;
+    padding: 10px 20px;
     border-radius: 6px;
     font-size: 1rem;
     color: #fff;
     cursor: pointer;
+}
+.box-clock-add button:focus {
+    outline: none;
+}
+
+.box-notes {
+    display: flex;
+}
+.box-notes-list {
+    flex-grow: 1;
 }

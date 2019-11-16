@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Notes from './Notes';
 import Clock from './Clock';
 
 export default class App extends Component {
@@ -44,10 +45,11 @@ export default class App extends Component {
     render() {
         const {clock} = this.state;
         console.log(localStorage.getItem('clock'));
-        console.log(this.state.clock);
         return (
             <div className='box'>
-                <div className='box-1'>dd</div>
+                <div className='box-1'>
+                    <Notes notes={[{title:'Title 1', text:'Text 1'}, {title:'Title 2', text:'Text 2'}]}/>
+                </div>
                 <div className='box-2'>
                     <Clock 
                         clock={clock} 

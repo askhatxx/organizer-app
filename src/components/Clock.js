@@ -35,14 +35,13 @@ export default class Clock extends Component {
             return (
                 <li 
                     key={index}
-                    onClick={() => {
+                    onMouseDown={() => {
                         this.props.addClock({type: 'analog', city, timezone});
-                        this.toggleCities();
+                        this.closeCities();
                     }}
                 >
                     <span>{city}</span>
-                    {' '}
-                   {timezone !== 'local' &&  <span>{timezone}</span>}
+                    {timezone !== 'local' &&  <span className='timezone'>{timezone}</span>}
                 </li>
             )
         });
@@ -53,6 +52,12 @@ export default class Clock extends Component {
     toggleCities = () => {
         this.setState({
             showCities: !this.state.showCities
+        })
+    }
+
+    closeCities = () => {
+        this.setState({
+            showCities: false
         })
     }
     
@@ -67,7 +72,10 @@ export default class Clock extends Component {
                 </div>
                 <div className='box-clock-add'>
                     {cities}
-                    <button onClick={this.toggleCities}>Add</button>
+                    <button 
+                        onClick={this.toggleCities}
+                        onBlur={this.closeCities}
+                    >Add</button>
                 </div>
             </div>
         )
