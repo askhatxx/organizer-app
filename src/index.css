@@ -16,10 +16,10 @@ body {
     min-height: 100vh;
 }
 .box-1 {
-    flex: 0 0 50%;
+    flex: 0 0 60%;
 }
 .box-2 {
-    flex: 0 0 50%;
+    flex: 0 0 40%;
 }
 
 .box-clock {
@@ -40,8 +40,8 @@ body {
     position: relative;
 }
 .circle {
-    width: 240px;
-    height: 240px;
+    width: 200px;
+    height: 200px;
     background-color: #fff;
     border-radius: 50%;
     position: relative;
@@ -104,8 +104,8 @@ body {
     transform: translate(-50%, -50%) rotate(var(--deg));
     width: 1%;
     height: 90%;
-    border-top: .75rem solid #000;
-    border-bottom: .75rem solid #000;
+    border-top: .60rem solid #000;
+    border-bottom: .60rem solid #000;
     z-index: 1;
 }
 .indicator.indicator1 { --deg: 0deg; }
@@ -189,7 +189,38 @@ body {
 
 .box-notes {
     display: flex;
+    height: 100%;
+    position: relative;
 }
 .box-notes-list {
     flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+.note {
+    color: #fff;
+    flex: 1 0 50%;
+    padding: 5px;
+}
+.note.long {
+    flex: 1 0 100%;
+}
+.note-inner {
+    height: 100%;
+    background: cornflowerblue;
+    padding: 10px;
+    border-radius: 8px;
+}
+.note-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.box-notes-add {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
 }
