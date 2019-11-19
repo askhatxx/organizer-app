@@ -212,15 +212,57 @@ body {
     padding: 10px;
     border-radius: 8px;
 }
-.note-title {
+.note-head {
     font-weight: bold;
+    font-size: 1.2rem;
     margin-bottom: 5px;
     display: flex;
     justify-content: space-between;
 }
+.note-title {
+    flex-grow: 1;
+    padding: 0 10px;
+}
+.flag {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+.flag-true {
+    background: #000;
+}
+
 .box-notes-add {
     position: absolute;
-    left: 50%;
+    position: fixed;
+    left: 10%;
     bottom: 10px;
-    transform: translateX(-50%);
+    transform: translateX(-0%);
+    width: 80%;
+    max-width: 600px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+.box-notes-add input,
+.box-notes-add textarea {
+    display: block;
+    width: 100%;
+    border: 1px solid #777;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.box-notes-add textarea {
+    resize: none;
+    height: 200px;
+}
+.box-notes-add input:focus,
+.box-notes-add textarea:focus {
+    outline: none;
 }

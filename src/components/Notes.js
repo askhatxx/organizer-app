@@ -40,24 +40,23 @@ export default class Notes extends Component {
                         value={this.state.formText}
                         onChange={this.handleChange}
                     />
-                    <button
-                        type='submit'
-                    >
-                        Send
-                    </button>
+                    <div>
+                        <button type='submit'>Send</button>
+                        <button type='button' onClick={this.closeForm}>Cancel</button>
+                    </div>
                 </form>
             </div>
         )
     }
     
     renderNoteFlag(index, flag) {
-        const clazz = flag ? 'flag flag-true' : 'flag flag-false';
+        const clazz = flag ? 'flag flag-true' : 'flag';
 
         return (
-            <button 
+            <span
                 onClick={() => this.props.changeFlagNote(index)}
-                className={clazz}>
-                {clazz}</button>
+                className={clazz}
+            ></span>
         )
     }
 
@@ -79,9 +78,9 @@ export default class Notes extends Component {
             return (
                 <div key={index} className={clazz}>
                     <div className='note-inner'>
-                        <div className='note-title'>
+                        <div className='note-head'>
                             <div>{noteFlag}</div>
-                            <div>{title}</div>
+                            <div className='note-title'>{title}</div>
                             <div>{options}</div>
                         </div>
                         <div className='note-text'>{text}</div>
@@ -91,6 +90,12 @@ export default class Notes extends Component {
         });
 
         return notesList;
+    }
+
+    closeForm = () => {
+        this.setState({
+            showForm: false
+        })
     }
 
     toggleForm = () => {
