@@ -15,7 +15,7 @@ export default class Notes extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addNote({title: this.state.formTitle, text: this.state.formText});
+        this.props.addNote({title: this.state.formTitle, text: this.state.formText, flag: false});
         this.setState({
             formTitle: '',
             formText: '',
@@ -50,13 +50,25 @@ export default class Notes extends Component {
         )
     }
     
+    renderNoteFlag(index, flag) {
+        const clazz = flag ? 'flag flag-true' : 'flag flag-false';
+
+        return (
+            <button 
+                onClick={() => this.props.changeFlagNote(index)}
+                className={clazz}>
+                {clazz}</button>
+        )
+    }
+
     renderNoteTitleOptions(index) {
         return <span onClick={() => this.props.removeNote(index)}>del</span>
     }
     
     renderNotes(notes) {
         const notesList = notes.map((item, index) => {
-            const {title, text} = item;
+            const {title, text, flag} = item;
+            const noteFlag = this.renderNoteFlag(index, flag);
             const options = this.renderNoteTitleOptions(index);
             let clazz = 'note';
 
@@ -67,7 +79,11 @@ export default class Notes extends Component {
             return (
                 <div key={index} className={clazz}>
                     <div className='note-inner'>
-                        <div className='note-title'>{title} {options}</div>
+                        <div className='note-title'>
+                            <div>{noteFlag}</div>
+                            <div>{title}</div>
+                            <div>{options}</div>
+                        </div>
                         <div className='note-text'>{text}</div>
                     </div>
                 </div>
