@@ -261,7 +261,6 @@ body {
 .colors .blue {background: blue;}
 
 .box-notes-add {
-    position: absolute;
     position: fixed;
     left: 10%;
     bottom: 10px;
@@ -271,6 +270,7 @@ body {
     background: #fff;
     border-radius: 10px;
     padding: 10px;
+    z-index: 400;
 }
 .box-notes-add input,
 .box-notes-add textarea {

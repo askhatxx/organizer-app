@@ -22,11 +22,14 @@ export default class App extends Component {
             {city: 'New York', timezone: '-5'}
         ];
 
+        this.colorsNote = ['default', 'green', 'red', 'blue'];
+
         const initialClock = {
             type: 'analog',
             city: 'Local',
             timezone: 'local'
         };
+
         const notes = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : notesTemp;
         const clock = localStorage.getItem('clock') ? JSON.parse(localStorage.getItem('clock')) : [initialClock];
 
@@ -96,7 +99,8 @@ export default class App extends Component {
             <div className='box'>
                 <div className='box-1'>
                     <Notes 
-                        notes={notes} 
+                        notes={notes}
+                        colorsNote={this.colorsNote}
                         addNote={this.addNote}
                         removeNote={this.removeNote}
                         changeFlagNote={this.changeFlagNote}

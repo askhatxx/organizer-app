@@ -1,55 +1,60 @@
 import React, {Component} from 'react';
+import NoteAdd from './NoteAdd';
 
 export default class Notes extends Component {
     state = {
-        formTitle: '',
-        formText: '',
-        showForm: false,
         noteColor: null
     }
-
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.addNote({title: this.state.formTitle, text: this.state.formText, flag: false, color: 'default'});
-        this.setState({
-            formTitle: '',
-            formText: '',
-            showForm: false
+    
+    showColorMenu = (event) => {
+        const num = +event.target.name;
+        this.setState({ noteColor: num }, () => {
+            document.addEventListener('click', this.hideColorMenu);
         });
     }
-    
-    renderForm() {
+
+    hideColorMenu = (event) => {
+        if (!this.dropdownMenu.contains(event.target)) {
+            this.setState({ noteColor: null }, () => {
+                document.removeEventListener('click', this.hideColorMenu);
+            });
+        }
+    }
+
+    renderNoteTitleOptions(index) {
+        const colorsItems = this.props.colorsNote.map((color) => {
+            return (
+                <div key={color}>
+                    <div 
+                        className={`color ${color}`}
+                        onClick={() => this.props.changeColorNote(index, color)}
+                    ></div>
+                </div>
+            )
+        });
+
+        const colorBox = this.state.noteColor === index 
+        ? 
+        <div 
+            ref={(element) => {
+                this.dropdownMenu = element;
+            }} 
+            className='colors'
+        >
+            {colorsItems}
+        </div> 
+        : 
+        null;
+
         return (
-            <div className='box-notes-add'>
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        name='formTitle'
-                        type='text'
-                        placeholder='Title'
-                        value={this.state.formTitle}
-                        onChange={this.handleChange}
-                    />
-                    <textarea
-                        name='formText'
-                        placeholder='Text'
-                        value={this.state.formText}
-                        onChange={this.handleChange}
-                    />
-                    <div>
-                        <button type='submit'>Send</button>
-                        <button type='button' onClick={this.closeForm}>Cancel</button>
-                    </div>
-                </form>
+            <div className='note-title-options'>
+                <div onClick={() => this.props.removeNote(index)}>del</div>
+                <button name={index} onClick={this.showColorMenu}>color</button>
+                {colorBox}
             </div>
         )
     }
-    
+
     renderNoteFlag(index, flag) {
         const clazz = flag ? 'flag flag-true' : 'flag';
 
@@ -58,32 +63,6 @@ export default class Notes extends Component {
                 onClick={() => this.props.changeFlagNote(index)}
                 className={clazz}
             ></span>
-        )
-    }
-
-    handleNoteColor = (index) => {
-        this.setState({
-            noteColor: index === this.state.noteColor ? null : index
-        })
-    }
-    
-    renderNoteTitleOptions(index) {
-        const colors = ['default', 'green', 'red', 'blue'];
-        const colorsItems = colors.map((color) => {
-            return (
-                <div key={color}>
-                    <div className={`color ${color}`} onClick={() => this.props.changeColorNote(index, color)}></div>
-                </div>
-            )
-        });
-        const colorBox = this.state.noteColor === index ? <div className='colors'>{colorsItems}</div> : null;
-
-        return (
-            <div className='note-title-options'>
-                <div onClick={() => this.props.removeNote(index)}>del</div>
-                <div onClick={() => this.handleNoteColor(index)}>color</div>
-                {colorBox}
-            </div>
         )
     }
     
@@ -115,26 +94,16 @@ export default class Notes extends Component {
         return notesList;
     }
 
-    closeForm = () => {
-        this.setState({
-            showForm: false
-        })
-    }
-
-    toggleForm = () => {
-        this.setState({
-            showForm: !this.state.showForm
-        })
-    }
-    
     render() {
         const notes = this.renderNotes(this.props.notes);
-        const form = this.state.showForm ? this.renderForm() : null;
         return (
             <div className='box-notes'>
-                <div className='box-notes-options'><span onClick={this.toggleForm}>Add</span></div>
-                <div className='box-notes-list'>{notes}</div>
-                {form}
+                <div className='box-notes-options'>
+                    <NoteAdd addNote={this.props.addNote}/>
+                </div>
+                <div className='box-notes-list'>
+                    {notes}
+                </div>
             </div>
         )
     }
