@@ -4,7 +4,8 @@ export default class Notes extends Component {
     state = {
         formTitle: '',
         formText: '',
-        showForm: false
+        showForm: false,
+        noteColor: null
     }
 
     handleChange = (e) => {
@@ -15,7 +16,7 @@ export default class Notes extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addNote({title: this.state.formTitle, text: this.state.formText, flag: false});
+        this.props.addNote({title: this.state.formTitle, text: this.state.formText, flag: false, color: 'default'});
         this.setState({
             formTitle: '',
             formText: '',
@@ -60,13 +61,35 @@ export default class Notes extends Component {
         )
     }
 
+    handleNoteColor = (index) => {
+        this.setState({
+            noteColor: index === this.state.noteColor ? null : index
+        })
+    }
+    
     renderNoteTitleOptions(index) {
-        return <span onClick={() => this.props.removeNote(index)}>del</span>
+        const colors = ['default', 'green', 'red', 'blue'];
+        const colorsItems = colors.map((color) => {
+            return (
+                <div key={color}>
+                    <div className={`color ${color}`} onClick={() => this.props.changeColorNote(index, color)}></div>
+                </div>
+            )
+        });
+        const colorBox = this.state.noteColor === index ? <div className='colors'>{colorsItems}</div> : null;
+
+        return (
+            <div className='note-title-options'>
+                <div onClick={() => this.props.removeNote(index)}>del</div>
+                <div onClick={() => this.handleNoteColor(index)}>color</div>
+                {colorBox}
+            </div>
+        )
     }
     
     renderNotes(notes) {
         const notesList = notes.map((item, index) => {
-            const {title, text, flag} = item;
+            const {title, text, flag, color} = item;
             const noteFlag = this.renderNoteFlag(index, flag);
             const options = this.renderNoteTitleOptions(index);
             let clazz = 'note';
@@ -77,7 +100,7 @@ export default class Notes extends Component {
 
             return (
                 <div key={index} className={clazz}>
-                    <div className='note-inner'>
+                    <div className={`note-inner ${color}`}>
                         <div className='note-head'>
                             <div>{noteFlag}</div>
                             <div className='note-title'>{title}</div>

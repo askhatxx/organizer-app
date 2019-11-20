@@ -187,11 +187,6 @@ body {
     outline: none;
 }
 
-.box-notes {
-    display: flex;
-    height: 100%;
-    position: relative;
-}
 .box-notes-list {
     flex-grow: 1;
     display: flex;
@@ -212,6 +207,10 @@ body {
     padding: 10px;
     border-radius: 8px;
 }
+.note-inner.default {background: cornflowerblue;}
+.note-inner.green {background: green;}
+.note-inner.red {background: red;}
+.note-inner.blue {background: blue;}
 .note-head {
     font-weight: bold;
     font-size: 1.2rem;
@@ -234,6 +233,32 @@ body {
 .flag-true {
     background: #000;
 }
+.note-title-options {
+    display: flex;
+    position: relative;
+}
+.colors {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    background:gray;
+    padding: 5px;
+    width: 55px;
+}
+.colors > div {
+    flex: 0 0 33%;
+    height: 15px;
+}
+.colors .color {
+    width: 100%;
+    height: 100%;
+}
+.colors .default {background: white;}
+.colors .green {background: green;}
+.colors .red {background: red;}
+.colors .blue {background: blue;}
 
 .box-notes-add {
     position: absolute;

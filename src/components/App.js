@@ -3,12 +3,12 @@ import Notes from './Notes';
 import Clock from './Clock';
 
 const notesTemp = [
-    {title:'Title 1', text:'Text 1', flag: false}, 
-    {title:'Title Title 2', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', flag: false}, 
-    {title:'Title Title Title3', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', flag: false}, 
-    {title:'Title Title 4', text:'Text Title Title Title Title 4', flag: false}, 
-    {title:'Title Title 5', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', flag: false}, 
-    {title:'Title 6', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', flag: false}
+    {title:'Title 1', text:'Text 1', flag: false, color: 'default'}, 
+    {title:'Title Title 2', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', flag: false, color: 'default'}, 
+    {title:'Title Title Title3', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', flag: false, color: 'default'}, 
+    {title:'Title Title 4', text:'Text Title Title Title Title 4', flag: false, color: 'default'}, 
+    {title:'Title Title 5', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', flag: false, color: 'default'}, 
+    {title:'Title 6', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', flag: false, color: 'default'}
 ];
 
 export default class App extends Component {
@@ -56,6 +56,14 @@ export default class App extends Component {
         });
     }
 
+    changeColorNote = (index, color) => {
+        const newNote = {...this.state.notes[index], color: color};
+        const newArr = [...this.state.notes.slice(0, index), newNote, ...this.state.notes.slice(index + 1)];
+        this.setState({
+            notes: newArr
+        });
+    }
+
     addNote = (note) => {
         const newNote = [note, ...this.state.notes];
         this.setState({notes: newNote});
@@ -92,6 +100,7 @@ export default class App extends Component {
                         addNote={this.addNote}
                         removeNote={this.removeNote}
                         changeFlagNote={this.changeFlagNote}
+                        changeColorNote={this.changeColorNote}
                     />
                 </div>
                 <div className='box-2'>
