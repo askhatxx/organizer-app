@@ -3,12 +3,12 @@ import Notes from './Notes';
 import Clock from './Clock';
 
 const notesTemp = [
-    {title:'Title 1', text:'Text 1', flag: false, color: 'default'}, 
-    {title:'Title Title 2', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', flag: false, color: 'default'}, 
-    {title:'Title Title Title3', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', flag: false, color: 'default'}, 
-    {title:'Title Title 4', text:'Text Title Title Title Title 4', flag: false, color: 'default'}, 
-    {title:'Title Title 5', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', flag: false, color: 'default'}, 
-    {title:'Title 6', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', flag: false, color: 'default'}
+    {title:'Title 1', text:'Text 1', flag: false, color: 'default', id: '11'}, 
+    {title:'Title Title 2', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', flag: false, color: 'default', id: '12'}, 
+    {title:'Title Title Title3', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', flag: false, color: 'default', id: '13'}, 
+    {title:'Title Title 4', text:'Text Title Title Title Title 4', flag: false, color: 'default', id: '14'}, 
+    {title:'Title Title 5', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', flag: false, color: 'default', id: '15'}, 
+    {title:'Title 6', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', flag: false, color: 'default', id: '16'}
 ];
 
 export default class App extends Component {
@@ -50,7 +50,8 @@ export default class App extends Component {
         localStorage.setItem('clock', JSON.stringify(this.state.clock));
     }
 
-    changeFlagNote = (index) => {
+    changeFlagNote = (id) => {
+        const index = this.state.notes.findIndex(item => item.id === id);
         const oldFlag = this.state.notes[index].flag;
         const newNote = {...this.state.notes[index], flag: !oldFlag};
         const newArr = [...this.state.notes.slice(0, index), newNote, ...this.state.notes.slice(index + 1)];
@@ -59,7 +60,8 @@ export default class App extends Component {
         });
     }
 
-    changeColorNote = (index, color) => {
+    changeColorNote = (id, color) => {
+        const index = this.state.notes.findIndex(item => item.id === id);
         const newNote = {...this.state.notes[index], color: color};
         const newArr = [...this.state.notes.slice(0, index), newNote, ...this.state.notes.slice(index + 1)];
         this.setState({
@@ -72,9 +74,9 @@ export default class App extends Component {
         this.setState({notes: newNote});
     }
     
-    removeNote = (index) => {
-        const newNotes = this.state.notes.filter((_, i) => {
-            return index !== i;
+    removeNote = (id) => {
+        const newNotes = this.state.notes.filter((item) => {
+            return item.id !== id;
         });
         this.setState({notes: newNotes});
     }

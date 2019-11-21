@@ -7,19 +7,21 @@ export default class NoteAdd extends Component {
         showForm: false
     }
 
-    handleChange = (e) => {
+    handleChange = (event) => {
         this.setState({
-            [e.target.name]: e.target.value
+            [event.target.name]: event.target.value
         })
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const newId = Math.floor(Math.random() * 1e8).toString(16);
         this.props.addNote({
             title: this.state.formTitle, 
             text: this.state.formText, 
             flag: false, 
-            color: 'default'
+            color: 'default',
+            id: newId
         });
         this.setState({
             formTitle: '',

@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 
 export default class NoteList extends Component {
-    renderNoteTitleOptions(index) {
+    renderNoteTitleOptions(id) {
         return (
             <div className='note-title-options'>
-                <div onClick={() => this.props.removeNote(index)}>del</div>
+                <div onClick={() => this.props.removeNote(id)}>del</div>
                 <ColorList 
-                    index={index}
+                    id={id}
                     colorsNote={this.props.colorsNote}
                     changeColorNote={this.props.changeColorNote}
                 />
@@ -14,22 +14,22 @@ export default class NoteList extends Component {
         )
     }
 
-    renderNoteFlag(index, flag) {
+    renderNoteFlag(id, flag) {
         const clazz = flag ? 'flag flag-true' : 'flag';
 
         return (
             <span
-                onClick={() => this.props.changeFlagNote(index)}
+                onClick={() => this.props.changeFlagNote(id)}
                 className={clazz}
             ></span>
         )
     }
     
     renderNotes(notes) {
-        const notesList = notes.map((item, index) => {
-            const {title, text, flag, color} = item;
-            const noteFlag = this.renderNoteFlag(index, flag);
-            const options = this.renderNoteTitleOptions(index);
+        const notesList = notes.map((item) => {
+            const {title, text, flag, color, id} = item;
+            const noteFlag = this.renderNoteFlag(id, flag);
+            const options = this.renderNoteTitleOptions(id);
             let clazz = 'note';
 
             if (title.length > 200 || text.length > 200) {
@@ -37,7 +37,7 @@ export default class NoteList extends Component {
             }
 
             return (
-                <div key={index} className={clazz}>
+                <div key={id} className={clazz}>
                     <div className={`note-inner ${color}`}>
                         <div className='note-head'>
                             <div>{noteFlag}</div>
@@ -70,7 +70,7 @@ class ColorList extends Component {
         showMenu: false
     }
 
-    showMenu = (event) => {
+    showMenu = () => {
         this.setState({ showMenu: true }, () => {
             document.addEventListener('click', this.closeMenu);
         });
@@ -92,7 +92,7 @@ class ColorList extends Component {
                 <div key={color}>
                     <div 
                         className={`color ${color}`}
-                        onClick={() => this.props.changeColorNote(this.props.index, color)}
+                        onClick={() => this.props.changeColorNote(this.props.id, color)}
                     ></div>
                 </div>
             )
