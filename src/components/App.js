@@ -100,10 +100,11 @@ export default class App extends Component {
         //console.log(this.state);
         return (
             <div>
-                <div className='box-notes-options'>
-                    <NoteAdd addNote={this.addNote}/>
-                </div>
+                
                 <div className='box'>
+                    <div className='box-0'>
+                        <NoteAdd addNote={this.addNote}/>
+                    </div>
                     <div className='box-1'>
                         <Notes 
                             notes={notes}
