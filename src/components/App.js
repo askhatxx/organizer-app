@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Notes from './Notes';
 import Clock from './Clock';
+import NoteAdd from './NoteAdd';
 
 const notesTemp = [
     {title:'Title 1', text:'Text 1', flag: false, color: 'default', id: '11'}, 
@@ -98,24 +99,28 @@ export default class App extends Component {
         //console.log(localStorage.getItem('clock'));
         //console.log(this.state);
         return (
-            <div className='box'>
-                <div className='box-1'>
-                    <Notes 
-                        notes={notes}
-                        colorsNote={this.colorsNote}
-                        addNote={this.addNote}
-                        removeNote={this.removeNote}
-                        changeFlagNote={this.changeFlagNote}
-                        changeColorNote={this.changeColorNote}
-                    />
+            <div>
+                <div className='box-notes-options'>
+                    <NoteAdd addNote={this.addNote}/>
                 </div>
-                <div className='box-2'>
-                    <Clock 
-                        clock={clock} 
-                        cities={this.cities} 
-                        addClock={this.addClock} 
-                        removeClock={this.removeClock} 
-                    />
+                <div className='box'>
+                    <div className='box-1'>
+                        <Notes 
+                            notes={notes}
+                            colorsNote={this.colorsNote}
+                            removeNote={this.removeNote}
+                            changeFlagNote={this.changeFlagNote}
+                            changeColorNote={this.changeColorNote}
+                        />
+                    </div>
+                    <div className='box-2'>
+                        <Clock 
+                            clock={clock} 
+                            cities={this.cities} 
+                            addClock={this.addClock} 
+                            removeClock={this.removeClock} 
+                        />
+                    </div>
                 </div>
             </div>
         )
