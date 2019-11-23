@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Notes from './Notes';
 import Clock from './Clock';
 import NoteAdd from './NoteAdd';
+import NoteFilter from './NoteFilter';
 
 const notesTemp = [
     {title:'Title 1', text:'Text 1', flag: false, color: 'default', id: '11'}, 
@@ -36,7 +37,8 @@ export default class App extends Component {
 
         this.state = {
             notes,
-            clock
+            clock,
+            filter: {text: '', flag: false, color: ''}
         };
 
         this.localStorageUpdate();
@@ -93,21 +95,48 @@ export default class App extends Component {
         });
         this.setState({clock: newClock});
     }
+
+    changeFilterNote = (filter) => {
+        this.setState({filter});
+    }
+
+    filterText(items, textFilter) {
+        if (textFilter.length === 0) {
+            return items;
+        }
+
+        const lowerTextFilter = textFilter.toLowerCase();
+
+        return items.filter(({title, text}) => {
+            const lowerTitle = title.toLowerCase();
+            const lowerText = text.toLowerCase();
+            return lowerTitle.includes(lowerTextFilter) || lowerText.includes(lowerTextFilter);
+        });
+    }
+
+    filterFlag(items, flag) {
+        if (flag === false) {
+            return items;
+        }
+
+        return items.filter((item) => item.flag === true);
+    }
     
     render() {
-        const {notes, clock} = this.state;
-        //console.log(localStorage.getItem('clock'));
-        //console.log(this.state);
+        const {notes, clock, filter: {text, flag}} = this.state;
+        console.log('render App', this.state.filter);
+        const visibleNotes = this.filterText(this.filterFlag(notes, flag), text);
         return (
             <div>
                 
                 <div className='box'>
                     <div className='box-0'>
                         <NoteAdd addNote={this.addNote}/>
+                        <NoteFilter changeFilterNote={this.changeFilterNote}/>
                     </div>
                     <div className='box-1'>
                         <Notes 
-                            notes={notes}
+                            notes={visibleNotes}
                             colorsNote={this.colorsNote}
                             removeNote={this.removeNote}
                             changeFlagNote={this.changeFlagNote}

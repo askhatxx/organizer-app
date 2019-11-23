@@ -21,6 +21,7 @@ body {
     position: absolute;
     width: 100%;
     z-index: 300;
+    display: flex;
 }
 .box-1 {
     flex: 0 0 60%;
