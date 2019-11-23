@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ColorList from './ColorList';
 
 export default class NoteFilter extends Component {
     state = {
@@ -19,6 +20,11 @@ export default class NoteFilter extends Component {
         this.updateFilter('flag', value);
     }
 
+    changeColor = ({color}) => {
+        this.setState({color: color});
+        this.updateFilter('color', color);
+    }
+
     updateFilter(key, value) {
         const newFilter = {...this.state, [key]: value};
         this.props.changeFilterNote(newFilter);
@@ -33,6 +39,10 @@ export default class NoteFilter extends Component {
                     onChange={this.changeText}
                 />
                 <div onClick={this.changeFlag} style={{float: 'right'}}>{this.state.flag ? 'true' : 'false'}</div>
+                <ColorList 
+                    colorsNote={this.props.colorsNote}
+                    changeColorNote={this.changeColor}
+                />
             </div>
         )
     }

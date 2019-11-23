@@ -23,11 +23,17 @@ export default class ColorList extends Component {
 
     render() {
         const colorsItems = this.props.colorsNote.map((color) => {
+            const data = {color};
+
+            if (this.props.id !== undefined) {
+                data.id = this.props.id;
+            }
+            
             return (
                 <div key={color}>
                     <div 
                         className={`color ${color}`}
-                        onClick={() => this.props.changeColorNote(this.props.id, color)}
+                        onClick={() => this.props.changeColorNote(data)}
                     ></div>
                 </div>
             )

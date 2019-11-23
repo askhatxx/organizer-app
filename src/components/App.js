@@ -38,7 +38,7 @@ export default class App extends Component {
         this.state = {
             notes,
             clock,
-            filter: {text: '', flag: false, color: ''}
+            filter: {text: '', flag: false, color: 'default'}
         };
 
         this.localStorageUpdate();
@@ -63,7 +63,7 @@ export default class App extends Component {
         });
     }
 
-    changeColorNote = (id, color) => {
+    changeColorNote = ({id, color}) => {
         const index = this.state.notes.findIndex(item => item.id === id);
         const newNote = {...this.state.notes[index], color: color};
         const newArr = [...this.state.notes.slice(0, index), newNote, ...this.state.notes.slice(index + 1)];
@@ -121,18 +121,28 @@ export default class App extends Component {
 
         return items.filter((item) => item.flag === true);
     }
+
+    filterColor(items, color) {
+        if (color === 'default') {
+            return items;
+        }
+
+        return items.filter((item) => item.color === color);
+    }
     
     render() {
-        const {notes, clock, filter: {text, flag}} = this.state;
+        const {notes, clock, filter: {text, flag, color}} = this.state;
         console.log('render App', this.state.filter);
-        const visibleNotes = this.filterText(this.filterFlag(notes, flag), text);
+        const visibleNotes = this.filterText(this.filterFlag(this.filterColor(notes, color), flag), text);
         return (
             <div>
-                
                 <div className='box'>
                     <div className='box-0'>
                         <NoteAdd addNote={this.addNote}/>
-                        <NoteFilter changeFilterNote={this.changeFilterNote}/>
+                        <NoteFilter 
+                            changeFilterNote={this.changeFilterNote}
+                            colorsNote={this.colorsNote}
+                        />
                     </div>
                     <div className='box-1'>
                         <Notes 
