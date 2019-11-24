@@ -1,12 +1,35 @@
+:root {
+    --bg1-color: #121212;
+    --bg2-color: #1d1d1d;
+    --bg3-color: #2d2d2d;
+    --text1-color: #e1e1e1;
+    --text2-color: #a4a4a4;
+    --accent1-color: #03dac6;
+    --accent2-color: #cf6679;
+    --font-family-segoe: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-family-arial: Arial, Helvetica, sans-serif;
+}
+
+.theme-dark {
+    --bg0-color: #000000;
+    --bg1-color: #121212;
+    --bg2-color: #1d1d1d;
+    --bg3-color: #2d2d2d;
+    --text0-color: #ffffff;
+    --text1-color: #e1e1e1;
+    --text2-color: #a4a4a4;
+    --accent1-color: #03dac6;
+    --accent2-color: #cf6679;
+}
+
 *, ::after, ::before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 body {
-    background-color: #034EB9;
     font-size: 1rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-family-segoe);
 }
 
 .box {
@@ -16,6 +39,8 @@ body {
     min-height: 100vh;
     align-content: flex-start;
     position: relative;
+    color: var(--text1-color);
+    background-color: var(--bg1-color);
 }
 .box-0 {
     position: absolute;
@@ -53,10 +78,12 @@ body {
 .circle {
     width: 200px;
     height: 200px;
-    background-color: #fff;
+    /* background-color: #fff; */
+    background-color: var(--bg3-color);
     border-radius: 50%;
     position: relative;
-    border: .35rem solid #000;
+    /* border: .35rem solid #000; */
+    border: .35rem solid var(--bg3-color);
     margin: 20px;
     margin-bottom: 5px;
 }
@@ -66,7 +93,8 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    border: .35rem solid #fff;
+    /* border: .35rem solid #fff; */
+    border: .35rem solid var(--text2-color);
     box-shadow: inset 0 0 2rem rgba(0, 0, 0, .5);
 }
 .circle::after {
@@ -148,7 +176,7 @@ body {
 }
 
 .city {
-    color: #fff;
+    color: var(--text2-color);
     font-size: 1.6rem;
     font-weight: bold;
     text-align: center;
@@ -163,10 +191,11 @@ body {
     position: absolute;
     bottom: 100%;
     right: 20px;
-    background: sandybrown;
-    padding: 5px;
+    background: var(--bg3-color);
+    border-radius: 10px;
+    padding: 10px;
     text-align: left;
-    color: #fff;
+    color: var(--text1-color);
     list-style: none;
     font-size: 1.2rem;
     z-index: 200;
@@ -176,25 +205,30 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 3px 8px 5px;
+    border-radius: 6px;
 }
 .box-clock-cities li:hover {
-    background: cornsilk;
-    color: sandybrown;
+    background: var(--bg2-color);
 }
 .box-clock-cities li .timezone {
     margin-left: 20px;
 }
 .box-clock-add button {
-    background: sandybrown;
+    background: var(--accent1-color);
     border: none;
     margin: 20px;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-size: 1rem;
-    color: #fff;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    color: #000;
     cursor: pointer;
+    font-family: var(--font-family-arial);
 }
-.box-clock-add button:focus {
+.box-clock-add button:focus,
+.box-clock-add button:active {
     outline: none;
 }
 
@@ -206,7 +240,6 @@ body {
     padding-top: 25px;
 }
 .note {
-    color: #fff;
     flex: 1 0 50%;
     padding: 5px;
 }
@@ -218,8 +251,9 @@ body {
     background: cornflowerblue;
     padding: 10px;
     border-radius: 8px;
+    color: var(--text1-color);
 }
-.note-inner.default {background: cornflowerblue;}
+.note-inner.default {background: var(--bg3-color);}
 .note-inner.green {background: green;}
 .note-inner.red {background: red;}
 .note-inner.blue {background: blue;}

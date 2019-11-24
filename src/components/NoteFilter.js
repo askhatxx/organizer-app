@@ -5,7 +5,7 @@ export default class NoteFilter extends Component {
     state = {
         text: '',
         flag: false,
-        color: ''
+        color: 'default'
     }
 
     changeText = (event) => {

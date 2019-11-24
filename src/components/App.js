@@ -24,21 +24,21 @@ export default class App extends Component {
             {city: 'New York', timezone: '-5'}
         ];
 
-        this.colorsNote = ['default', 'green', 'red', 'blue'];
+        const initialClock = [
+            {type: 'analog', city: 'Local', timezone: 'local'}
+        ];
 
-        const initialClock = {
-            type: 'analog',
-            city: 'Local',
-            timezone: 'local'
-        };
+        this.colorsNote = ['default', 'green', 'red', 'blue'];
+        this.themes = ['theme-default', 'theme-dark'];
 
         const notes = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : notesTemp;
-        const clock = localStorage.getItem('clock') ? JSON.parse(localStorage.getItem('clock')) : [initialClock];
+        const clock = localStorage.getItem('clock') ? JSON.parse(localStorage.getItem('clock')) : initialClock;
 
         this.state = {
             notes,
             clock,
-            filter: {text: '', flag: false, color: 'default'}
+            filter: {text: '', flag: false, color: 'default'},
+            theme: 'theme-dark'
         };
 
         this.localStorageUpdate();
@@ -131,11 +131,11 @@ export default class App extends Component {
     }
     
     render() {
-        const {notes, clock, filter: {text, flag, color}} = this.state;
+        const {notes, clock, filter: {text, flag, color}, theme} = this.state;
         console.log('render App', this.state.filter);
         const visibleNotes = this.filterText(this.filterFlag(this.filterColor(notes, color), flag), text);
         return (
-            <div>
+            <div className={theme}>
                 <div className='box'>
                     <div className='box-0'>
                         <NoteAdd addNote={this.addNote}/>

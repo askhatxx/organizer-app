@@ -75,7 +75,7 @@ export default class Clock extends Component {
                     <button 
                         onClick={this.toggleCities}
                         onBlur={this.closeCities}
-                    >Add</button>
+                    >+</button>
                 </div>
             </div>
         )
