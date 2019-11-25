@@ -13,7 +13,7 @@ export default class ColorList extends Component {
     
     closeMenu = (event) => {
         if (!this.dropdownMenu) {
-            document.removeEventListener('click', this.hideColorMenu);
+            document.removeEventListener('click', this.closeMenu);
         } else if (!this.dropdownMenu.contains(event.target)) {
             this.setState({ showMenu: false }, () => {
             document.removeEventListener('click', this.closeMenu);
