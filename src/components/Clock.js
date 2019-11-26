@@ -7,13 +7,13 @@ export default class Clock extends Component {
     }
 
     showCities = () => {
-        this.setState({showCities: true}, () => {
+        this.setState({ showCities: true }, () => {
             document.addEventListener('click', this.closeCities);
         })
     }
 
     closeCities = () => {
-        this.setState({showCities: false}, () => {
+        this.setState({ showCities: false }, () => {
             document.removeEventListener('click', this.closeCities);
         })
     }

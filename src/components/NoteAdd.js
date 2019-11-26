@@ -70,8 +70,8 @@ export default class NoteAdd extends Component {
 
     render() {
         return (
-            <div>
-                <div onClick={this.toggleForm}>Add</div>
+            <div className='note-add'>
+                <button onClick={this.toggleForm}>Add</button>
                 {this.state.showForm && this.renderForm()}
             </div>
         )

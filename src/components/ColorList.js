@@ -40,7 +40,7 @@ export default class ColorList extends Component {
         });
 
         return (
-            <div>
+            <div className='color-list'>
                 <button onClick={this.showMenu}>color</button>
                 {
                     this.state.showMenu 

@@ -3,6 +3,7 @@ import Notes from './Notes';
 import Clock from './Clock';
 import NoteAdd from './NoteAdd';
 import NoteFilter from './NoteFilter';
+import Settings from './Settings';
 
 const notesTemp = [
     {title:'Title 1', text:'Text 1', flag: false, color: 'default', id: '11'}, 
@@ -29,16 +30,17 @@ export default class App extends Component {
         ];
 
         this.colorsNote = ['default', 'green', 'red', 'blue'];
-        this.themes = ['theme-default', 'theme-dark'];
+        this.themes = ['theme-light', 'theme-dark'];
 
         const notes = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : notesTemp;
         const clock = localStorage.getItem('clock') ? JSON.parse(localStorage.getItem('clock')) : initialClock;
+        const theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : this.themes[1];
 
         this.state = {
             notes,
             clock,
             filter: {text: '', flag: false, color: 'default'},
-            theme: 'theme-dark'
+            theme
         };
 
         this.localStorageUpdate();
@@ -51,6 +53,7 @@ export default class App extends Component {
     localStorageUpdate() {
         localStorage.setItem('notes', JSON.stringify(this.state.notes));
         localStorage.setItem('clock', JSON.stringify(this.state.clock));
+        localStorage.setItem('theme', this.state.theme);
     }
 
     changeFlagNote = (id) => {
@@ -129,6 +132,10 @@ export default class App extends Component {
 
         return items.filter((item) => item.color === color);
     }
+
+    changeTheme = (theme) => {
+        this.setState({theme})
+    }
     
     render() {
         const {notes, clock, filter: {text, flag, color}, theme} = this.state;
@@ -138,11 +145,19 @@ export default class App extends Component {
             <div className={theme}>
                 <div className='box'>
                     <div className='box-0'>
-                        <NoteAdd addNote={this.addNote}/>
-                        <NoteFilter 
-                            changeFilterNote={this.changeFilterNote}
-                            colorsNote={this.colorsNote}
-                        />
+                        <div className='options'>
+                            <NoteAdd addNote={this.addNote}/>
+                            <NoteFilter 
+                                changeFilterNote={this.changeFilterNote}
+                                colorsNote={this.colorsNote}
+                            />
+                        </div>
+                        <div className='settings'>
+                            <Settings
+                                themes={this.themes}
+                                changeTheme={this.changeTheme}
+                            />
+                        </div>
                     </div>
                     <div className='box-1'>
                         <Notes 

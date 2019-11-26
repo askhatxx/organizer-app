@@ -32,17 +32,25 @@ export default class NoteFilter extends Component {
     
     render() {
         return (
-            <div>
-                <input 
-                    type='text'
-                    value={this.state.text}
-                    onChange={this.changeText}
-                />
-                <div onClick={this.changeFlag} style={{float: 'right'}}>{this.state.flag ? 'true' : 'false'}</div>
-                <ColorList 
-                    colorsNote={this.props.colorsNote}
-                    changeColorNote={this.changeColor}
-                />
+            <div className='note-filter'>
+                <div className='note-filter-search'>
+                    <input 
+                        type='text'
+                        value={this.state.text}
+                        onChange={this.changeText}
+                        placeholder='Search'
+                        className='note-filter-input'
+                    />
+                </div>
+                <div>
+                    <button onClick={this.changeFlag}>{this.state.flag ? 'true' : 'false'}</button>
+                </div>
+                <div>
+                    <ColorList 
+                        colorsNote={this.props.colorsNote}
+                        changeColorNote={this.changeColor}
+                    />
+                </div>
             </div>
         )
     }

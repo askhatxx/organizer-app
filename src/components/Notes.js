@@ -5,7 +5,7 @@ export default class Notes extends Component {
     renderNoteTitleOptions(id) {
         return (
             <div className='note-title-options'>
-                <div onClick={() => this.props.removeNote(id)}>del</div>
+                <button onClick={() => this.props.removeNote(id)}>del</button>
                 <ColorList 
                     id={id}
                     colorsNote={this.props.colorsNote}
