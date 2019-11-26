@@ -37,8 +37,25 @@ export default class Settings extends Component {
         return themes;
     }
 
+    renderListSizes() {
+        const sizes = this.props.sizes.map((sizes, index) => {
+            return (
+                <div 
+                    key={index} 
+                    className={`${sizes}-item`}
+                    onClick={() => this.props.changeSizes(sizes)}
+                >
+                    {sizes}
+                </div>
+            )
+        });
+
+        return sizes;
+    }
+
     renderSettigs() {
         const themes = this.renderListThemes();
+        const sizes = this.renderListSizes();
         return (
             <div 
                 className='settings-options'
@@ -48,6 +65,9 @@ export default class Settings extends Component {
             >
                 <div className='list-themes'>
                     {themes}
+                </div>
+                <div className='list-sizes'>
+                    {sizes}
                 </div>
             </div>
         )

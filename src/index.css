@@ -10,6 +10,8 @@
     --font-family-arial: Arial, Helvetica, sans-serif;
 
     --padding-box-top: 70px;
+    --box-1-width: 60%;
+    --box-2-width: 40%;
 }
 
 .theme-light {
@@ -49,6 +51,10 @@ button {
     font-family: inherit;
     cursor: pointer;
 }
+button:focus,
+button:active {
+    outline: none;
+}
 
 .box {
     display: flex;
@@ -68,10 +74,22 @@ button {
     justify-content: space-between;
 }
 .box-1 {
-    flex: 0 0 60%;
+    flex: 0 0 var(--box-1-width);
 }
 .box-2 {
-    flex: 0 0 40%;
+    flex: 0 0 var(--box-2-width);
+}
+.sizes60x40 {
+    --box-1-width: 60%;
+    --box-2-width: 40%;
+}
+.sizes40x60 {
+    --box-1-width: 40%;
+    --box-2-width: 60%;
+}
+.sizes50x50 {
+    --box-1-width: 50%;
+    --box-2-width: 50%;
 }
 
 .box-clock {
@@ -338,7 +356,7 @@ button {
 .colors .blue {background: blue;}
 
 .options {
-    flex: 0 0 60%;
+    flex: 0 0 var(--box-1-width);
     display: flex;
     padding: 5px;
 }
@@ -405,6 +423,9 @@ button {
     border: none;
     color: var(--text1-color);
     padding: 5px 5px;
+}
+.note-filter-search .note-filter-input:focus {
+    outline: none;
 }
 .note-filter-search .note-filter-input::placeholder {
     color: var(--text2-color);

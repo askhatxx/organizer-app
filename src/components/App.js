@@ -5,18 +5,22 @@ import NoteAdd from './NoteAdd';
 import NoteFilter from './NoteFilter';
 import Settings from './Settings';
 
-const notesTemp = [
-    {title:'Title 1', text:'Text 1', flag: false, color: 'default', id: '11'}, 
-    {title:'Title Title 2', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', flag: false, color: 'default', id: '12'}, 
-    {title:'Title Title Title3', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', flag: false, color: 'default', id: '13'}, 
-    {title:'Title Title 4', text:'Text Title Title Title Title 4', flag: false, color: 'default', id: '14'}, 
-    {title:'Title Title 5', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', flag: false, color: 'default', id: '15'}, 
-    {title:'Title 6', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', flag: false, color: 'default', id: '16'}
-];
-
 export default class App extends Component {
     constructor(props) {
         super(props);
+
+        const initialNotes = [
+            {title:'Title 1', text:'Text 1', flag: false, color: 'default', id: '11'}, 
+            {title:'Title Title 2', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', flag: false, color: 'default', id: '12'}, 
+            {title:'Title Title Title3', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', flag: false, color: 'default', id: '13'}, 
+            {title:'Title Title 4', text:'Text Title Title Title Title 4', flag: false, color: 'default', id: '14'}, 
+            {title:'Title Title 5', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', flag: false, color: 'default', id: '15'}, 
+            {title:'Title 6', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', flag: false, color: 'default', id: '16'}
+        ];
+
+        const initialClock = [
+            {type: 'analog', city: 'Local', timezone: 'local'}
+        ];
 
         this.cities = [
             {city: 'Local', timezone: 'local'},
@@ -24,23 +28,21 @@ export default class App extends Component {
             {city: 'Tokyo', timezone: '+9'},
             {city: 'New York', timezone: '-5'}
         ];
-
-        const initialClock = [
-            {type: 'analog', city: 'Local', timezone: 'local'}
-        ];
-
         this.colorsNote = ['default', 'green', 'red', 'blue'];
         this.themes = ['theme-light', 'theme-dark'];
+        this.sizes = ['60x40', '40x60', '50x50'];
 
-        const notes = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : notesTemp;
+        const notes = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : initialNotes;
         const clock = localStorage.getItem('clock') ? JSON.parse(localStorage.getItem('clock')) : initialClock;
         const theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : this.themes[1];
+        const sizes = localStorage.getItem('sizes') ? localStorage.getItem('sizes') : this.sizes[0];
 
         this.state = {
             notes,
             clock,
             filter: {text: '', flag: false, color: 'default'},
-            theme
+            theme,
+            sizes
         };
 
         this.localStorageUpdate();
@@ -54,6 +56,7 @@ export default class App extends Component {
         localStorage.setItem('notes', JSON.stringify(this.state.notes));
         localStorage.setItem('clock', JSON.stringify(this.state.clock));
         localStorage.setItem('theme', this.state.theme);
+        localStorage.setItem('sizes', this.state.sizes);
     }
 
     changeFlagNote = (id) => {
@@ -136,13 +139,17 @@ export default class App extends Component {
     changeTheme = (theme) => {
         this.setState({theme})
     }
+
+    changeSizes = (sizes) => {
+        this.setState({sizes})
+    }
     
     render() {
-        const {notes, clock, filter: {text, flag, color}, theme} = this.state;
-        console.log('render App', this.state.filter);
+        const {notes, clock, filter: {text, flag, color}, theme, sizes} = this.state;
+        console.log('render App', this.state.sizes);
         const visibleNotes = this.filterText(this.filterFlag(this.filterColor(notes, color), flag), text);
         return (
-            <div className={theme}>
+            <div className={`${theme} sizes${sizes}`}>
                 <div className='box'>
                     <div className='box-0'>
                         <div className='options'>
@@ -156,6 +163,8 @@ export default class App extends Component {
                             <Settings
                                 themes={this.themes}
                                 changeTheme={this.changeTheme}
+                                sizes={this.sizes}
+                                changeSizes={this.changeSizes}
                             />
                         </div>
                     </div>
