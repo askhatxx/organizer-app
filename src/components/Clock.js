@@ -73,7 +73,9 @@ export default class Clock extends Component {
                     {cities}
                     <button 
                         onClick={this.showCities}
-                    >+</button>
+                    >
+                        +
+                    </button>
                 </div>
             </div>
         )

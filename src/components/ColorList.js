@@ -34,14 +34,14 @@ export default class ColorList extends Component {
                     <div 
                         className={`color ${color}`}
                         onClick={() => this.props.changeColorNote(data)}
-                    ></div>
+                    >{color === 'default' ? <i className="fas fa-tint-slash"></i> : null}</div>
                 </div>
             )
         });
 
         return (
             <div className='color-list'>
-                <button onClick={this.showMenu}>color</button>
+                <button onClick={this.showMenu}><i className="fas fa-tint"></i></button>
                 {
                     this.state.showMenu 
                     ? 

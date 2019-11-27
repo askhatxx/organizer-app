@@ -16,19 +16,21 @@
     --list-sizes-item-hover: #e1e1e1;
     --note-inner-default: #f2f2f2;
     --colors-bg: #585858;
+    --box-clock-add-button: #03dac6;
     --box-clock-cities: #f2f2f2;
     --box-clock-cities-hover: #d3d3d3;
     --clock-hand-seconds: #cf6679;
     --clock-bg: #f2f2f2;
-    --clock-border-out: #f2f2f2;
-    --clock-border-in: #585858;
+    --clock-border-out: #585858;
+    --clock-border-in: #f2f2f2;
     --remove-clock: #ffffff;
+    --note-add-button: #cf6679;
+
+    --note-add-button-text: #ffffff;
     
     --text0-color: #000000;
     --text1-color: #333333;
     --text2-color: #585858;
-    --accent1-color: #03dac6;
-    --accent2-color: #cf6679;
 }
 .theme-dark {
     --bg: #121212;
@@ -39,6 +41,7 @@
     --list-sizes-item-hover: #121212;
     --note-inner-default: #333333;
     --colors-bg: #a4a4a4;
+    --box-clock-add-button: #03dac6;
     --box-clock-cities: #333333;
     --box-clock-cities-hover: #242424;
     --clock-hand-seconds: #cf6679;
@@ -46,12 +49,13 @@
     --clock-border-out: #333333;
     --clock-border-in: #a4a4a4;
     --remove-clock: #ffffff;
+    --note-add-button: #cf6679;
+
+    --note-add-button-text: #ffffff;
     
     --text0-color: #ffffff;
     --text1-color: #e1e1e1;
     --text2-color: #a4a4a4;
-    --accent1-color: #03dac6;
-    --accent2-color: #cf6679;
 }
 
 *, ::after, ::before {
@@ -268,12 +272,12 @@ button:active {
     margin-left: 20px;
 }
 .box-clock-add button {
-    background: var(--accent1-color);
+    background: var(--box-clock-add-button);
     border: none;
     margin: 20px;
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
     text-align: center;
     border-radius: 50%;
     font-size: 1.8rem;
@@ -322,24 +326,34 @@ button:active {
     flex-grow: 1;
     padding: 0 10px;
 }
-.flag {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 1px solid #000;
-    cursor: pointer;
-}
-.flag-true {
-    background: #000;
+.note-flag button {
+    background: none;
+    border: none;
+    color: #d3d3d3;
+    font-size: 1.2rem;
 }
 .note-title-options {
     display: flex;
     position: relative;
 }
+.note-remove > button {
+    background: #4383DE;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #d3d3d3;
+    margin-left: 5px;
+}
 
 .color-list {
     position: relative;
+}
+.color-list > button {
+    background: #4383DE;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #d3d3d3;
 }
 .colors {
     position: absolute;
@@ -368,6 +382,13 @@ button:active {
 .colors .color:hover {
     border: 3px solid rgba(0, 0, 0, .2);
 }
+.colors .default {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .75rem;
+    color: #444;
+}
 .colors .default {background: white;}
 .colors .green {background: rgba(46, 225, 90, 1);}
 .colors .red {background: rgba(225, 46, 46, 1);}
@@ -383,9 +404,9 @@ button:active {
     padding-right: 10px;
 }
 .note-add button {
-    background: var(--accent2-color);
+    background: var(--note-add-button);
     border: none;
-    color: var(--text0-color);
+    color: var(--note-add-button-text);
     height: 100%;
     padding: 0 15px;
     border-radius: 5px;
@@ -448,6 +469,14 @@ button:active {
 .note-filter-search .note-filter-input::placeholder {
     color: var(--text2-color);
     opacity: 1;
+}
+.note-filter-flag > button {
+    background: #4383DE;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #d3d3d3;
+    margin-right: 5px;
 }
 
 .settings {

@@ -42,8 +42,12 @@ export default class NoteFilter extends Component {
                         className='note-filter-input'
                     />
                 </div>
-                <div>
-                    <button onClick={this.changeFlag}>{this.state.flag ? 'true' : 'false'}</button>
+                <div className='note-filter-flag'>
+                    <button 
+                        onClick={this.changeFlag}
+                    >
+                        {this.state.flag ? <i className="far fa-check-circle"></i> : <i className="far fa-circle"></i>}
+                    </button>
                 </div>
                 <div>
                     <ColorList 

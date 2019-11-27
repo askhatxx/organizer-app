@@ -5,24 +5,27 @@ export default class Notes extends Component {
     renderNoteTitleOptions(id) {
         return (
             <div className='note-title-options'>
-                <button onClick={() => this.props.removeNote(id)}>del</button>
                 <ColorList 
                     id={id}
                     colorsNote={this.props.colorsNote}
                     changeColorNote={this.props.changeColorNote}
                 />
+                <div className='note-remove'>
+                    <button onClick={() => this.props.removeNote(id)}>
+                        <i className="fas fa-trash-alt"></i>
+                    </button>
+                </div>
             </div>
         )
     }
 
     renderNoteFlag(id, flag) {
-        const clazz = flag ? 'flag flag-true' : 'flag';
-
         return (
-            <span
+            <button
                 onClick={() => this.props.changeFlagNote(id)}
-                className={clazz}
-            ></span>
+            >
+                {flag ? <i className="far fa-check-circle"></i> : <i className="far fa-circle"></i>}
+            </button>
         )
     }
     
@@ -41,7 +44,7 @@ export default class Notes extends Component {
                 <div key={id} className={clazz}>
                     <div className={`note-inner ${color}`}>
                         <div className='note-head'>
-                            <div>{noteFlag}</div>
+                            <div className='note-flag'>{noteFlag}</div>
                             <div className='note-title'>{title}</div>
                             <div>{options}</div>
                         </div>
