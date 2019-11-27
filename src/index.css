@@ -1,11 +1,4 @@
 :root {
-    --bg1-color: #121212;
-    --bg2-color: #1d1d1d;
-    --bg3-color: #2d2d2d;
-    --text1-color: #e1e1e1;
-    --text2-color: #a4a4a4;
-    --accent1-color: #03dac6;
-    --accent2-color: #cf6679;
     --font-family-segoe: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --font-family-arial: Arial, Helvetica, sans-serif;
 
@@ -15,21 +8,45 @@
 }
 
 .theme-light {
-    --bg0-color: #ffffff;
-    --bg1-color: #e1e1e1;
-    --bg2-color: #a4a4a4;
-    --bg3-color: #666666;
+    --bg: #e1e1e1;
+    --filter: #f2f2f2;
+    --settings-button: #d3d3d3;
+    --settings-options: #f2f2f2;
+    --list-sizes-item: #d3d3d3;
+    --list-sizes-item-hover: #e1e1e1;
+    --note-inner-default: #f2f2f2;
+    --colors-bg: #585858;
+    --box-clock-cities: #f2f2f2;
+    --box-clock-cities-hover: #d3d3d3;
+    --clock-hand-seconds: #cf6679;
+    --clock-bg: #f2f2f2;
+    --clock-border-out: #f2f2f2;
+    --clock-border-in: #585858;
+    --remove-clock: #ffffff;
+    
     --text0-color: #000000;
-    --text1-color: #121212;
-    --text2-color: #1d1d1d;
+    --text1-color: #333333;
+    --text2-color: #585858;
     --accent1-color: #03dac6;
     --accent2-color: #cf6679;
 }
 .theme-dark {
-    --bg0-color: #000000;
-    --bg1-color: #121212;
-    --bg2-color: #1d1d1d;
-    --bg3-color: #2d2d2d;
+    --bg: #121212;
+    --filter: #333333;
+    --settings-button: #242424;
+    --settings-options: #333333;
+    --list-sizes-item: #242424;
+    --list-sizes-item-hover: #121212;
+    --note-inner-default: #333333;
+    --colors-bg: #a4a4a4;
+    --box-clock-cities: #333333;
+    --box-clock-cities-hover: #242424;
+    --clock-hand-seconds: #cf6679;
+    --clock-bg: #333333;
+    --clock-border-out: #333333;
+    --clock-border-in: #a4a4a4;
+    --remove-clock: #ffffff;
+    
     --text0-color: #ffffff;
     --text1-color: #e1e1e1;
     --text2-color: #a4a4a4;
@@ -64,7 +81,7 @@ button:active {
     align-content: flex-start;
     position: relative;
     color: var(--text1-color);
-    background-color: var(--bg1-color);
+    background-color: var(--bg);
 }
 .box-0 {
     position: absolute;
@@ -116,11 +133,11 @@ button:active {
     width: 200px;
     height: 200px;
     /* background-color: #fff; */
-    background-color: var(--bg3-color);
+    background-color: var(--clock-bg);
     border-radius: 50%;
     position: relative;
     /* border: .35rem solid #000; */
-    border: .35rem solid var(--bg3-color);
+    border: .35rem solid var(--clock-border-out);
     margin: 20px;
     margin-bottom: 5px;
 }
@@ -131,7 +148,7 @@ button:active {
     height: 100%;
     border-radius: 50%;
     /* border: .35rem solid #fff; */
-    border: .35rem solid var(--text2-color);
+    border: .35rem solid var(--clock-border-in);
     box-shadow: inset 0 0 2rem rgba(0, 0, 0, .5);
 }
 .circle::after {
@@ -142,7 +159,7 @@ button:active {
     transform: translate(-50%, -50%);
     width: 5%;
     height: 5%;
-    background-color: #DE6D43;
+    background-color: var(--clock-hand-seconds);
     border-radius: 50%;
     z-index: 11;
 }
@@ -170,7 +187,7 @@ button:active {
     left: 49.5%;
     width: 1%;
     height: 40%;
-    background-color: #DE6D43;
+    background-color: var(--clock-hand-seconds);
 }
 .indicator {
     --deg: 0deg;
@@ -198,7 +215,7 @@ button:active {
     visibility: hidden;
     opacity: .5;
     font-size: 1.5rem;
-    color:#fff;
+    color: var(--remove-clock);
     transition: opacity .1s;
 }
 .box-circle:hover .remove-clock {
@@ -228,7 +245,7 @@ button:active {
     position: absolute;
     bottom: 100%;
     right: 20px;
-    background: var(--bg3-color);
+    background: var(--box-clock-cities);
     border-radius: 10px;
     padding: 10px;
     text-align: left;
@@ -245,7 +262,7 @@ button:active {
     border-radius: 6px;
 }
 .box-clock-cities li:hover {
-    background: var(--bg2-color);
+    background: var(--box-clock-cities-hover);
 }
 .box-clock-cities li .timezone {
     margin-left: 20px;
@@ -290,10 +307,10 @@ button:active {
     border-radius: 8px;
     color: var(--text1-color);
 }
-.note-inner.default {background: var(--bg3-color);}
-.note-inner.green {background: green;}
-.note-inner.red {background: red;}
-.note-inner.blue {background: blue;}
+.note-inner.default {background: var(--note-inner-default);}
+.note-inner.green {background: rgba(46, 225, 90, .5);}
+.note-inner.red {background: rgba(225, 46, 46, .5);}
+.note-inner.blue {background: rgba(55, 166, 234, .5);}
 .note-head {
     font-weight: bold;
     font-size: 1.2rem;
@@ -331,29 +348,30 @@ button:active {
     margin-top: 5px;
     display: flex;
     flex-wrap: wrap;
-    background: var(--text2-color);
-    padding: 10px;
+    background: var(--colors-bg);
+    padding: 5px;
     border-radius: 5px;
-    width: 80px;
+    width: 100px;
     z-index: 400;
 }
 .colors > div {
     flex: 0 0 33%;
-    height: 20px;
-    background: #000;
+    height: 30px;
+    padding: 3px;
 }
 .colors .color {
     width: 100%;
     height: 100%;
+    border-radius: 4px;
     cursor: pointer;
 }
 .colors .color:hover {
-    opacity: .75;
+    border: 3px solid rgba(0, 0, 0, .2);
 }
 .colors .default {background: white;}
-.colors .green {background: green;}
-.colors .red {background: red;}
-.colors .blue {background: blue;}
+.colors .green {background: rgba(46, 225, 90, 1);}
+.colors .red {background: rgba(225, 46, 46, 1);}
+.colors .blue {background: rgba(55, 166, 234, 1);}
 
 .options {
     flex: 0 0 var(--box-1-width);
@@ -410,7 +428,7 @@ button:active {
     display: flex;
     align-items: center;
     flex-grow: 1;
-    background: var(--bg3-color);
+    background: var(--filter);
     padding: 5px;
     border-radius: 5px;
 }
@@ -440,23 +458,62 @@ button:active {
     position: relative;
 }
 .settings button {
-    background: var(--accent2-color);
+    background: var(--settings-button);
     border: none;
-    color: var(--text0-color);
+    color: var(--text1-color);
     height: 100%;
     padding: 0 15px;
     border-radius: 5px;
-    text-transform: uppercase;
-    font-weight: bold;
 }
 .settings .settings-options {
     position: absolute;
     top: 100%;
     right: 0;
     margin-top: 10px;
-    background: var(--bg3-color);
+    width: 160px;
+    background: var(--settings-options);
     border-radius: 10px;
     padding: 10px;
     color: var(--text1-color);
     z-index: 500;
+}
+
+.list-themes {
+    display: flex;
+}
+.list-themes > div {
+    height: 20px;
+    flex-grow: 1;
+    cursor: pointer;
+}
+.list-themes div:first-child {
+    border-radius: 5px 0 0 5px;
+}
+.list-themes div:last-child {
+    border-radius: 0 5px 5px 0;
+}
+.list-themes .theme-light-item {
+    background: #fff;
+}
+.list-themes .theme-dark-item {
+    background: #000;
+}
+
+.list-sizes {
+    margin-top: 15px;
+}
+.list-sizes > div {
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+    background: var(--list-sizes-item);
+}
+.list-sizes > div:hover {
+    background: var(--list-sizes-item-hover);
+}
+.list-sizes div:first-child {
+    border-radius: 5px 5px 0 0;
+}
+.list-sizes div:last-child {
+    border-radius: 0 0 5px 5px;
 }

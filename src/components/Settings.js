@@ -28,9 +28,7 @@ export default class Settings extends Component {
                     key={index} 
                     className={`${theme}-item`}
                     onClick={() => this.props.changeTheme(theme)}
-                >
-                    {theme}
-                </div>
+                ></div>
             )
         });
 
@@ -77,7 +75,7 @@ export default class Settings extends Component {
         const settings = this.state.showSettings ? this.renderSettigs() : null;
         return (
             <div className='settings-inner'>
-                <button onClick={this.showSettings}>set</button>
+                <button onClick={this.showSettings}><i className="fas fa-ellipsis-v"></i></button>
                 {settings}
             </div>
         )
