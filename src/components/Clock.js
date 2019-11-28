@@ -74,7 +74,7 @@ export default class Clock extends Component {
                     <button 
                         onClick={this.showCities}
                     >
-                        +
+                        <i className="fas fa-plus"></i>
                     </button>
                 </div>
             </div>

@@ -23,15 +23,13 @@ export default class NoteAdd extends Component {
             color: 'default',
             id: newId
         });
-        this.setState({
-            formTitle: '',
-            formText: '',
-            showForm: false
-        });
+        this.closeForm();
     }
 
     closeForm = () => {
         this.setState({
+            formTitle: '',
+            formText: '',
             showForm: false
         })
     }
@@ -53,8 +51,8 @@ export default class NoteAdd extends Component {
                         value={this.state.formText}
                         onChange={this.handleChange}
                     />
-                    <div>
-                        <button type='submit'>Send</button>
+                    <div className='note-add-form-button'>
+                        <button type='submit'>Add</button>
                         <button type='button' onClick={this.closeForm}>Cancel</button>
                     </div>
                 </form>
@@ -71,7 +69,7 @@ export default class NoteAdd extends Component {
     render() {
         return (
             <div className='note-add'>
-                <button onClick={this.toggleForm}><i className="fas fa-plus"></i> Add</button>
+                <button onClick={this.toggleForm}><i className="fas fa-plus"></i> New</button>
                 {this.state.showForm && this.renderForm()}
             </div>
         )

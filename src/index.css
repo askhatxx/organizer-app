@@ -11,20 +11,29 @@
     --bg: #e1e1e1;
     --filter: #f2f2f2;
     --settings-button: #d3d3d3;
+    --settings-button-hover: #c7c7c7;
+    --settings-button-text: #333333;
     --settings-options: #f2f2f2;
     --list-sizes-item: #d3d3d3;
     --list-sizes-item-hover: #e1e1e1;
     --note-inner-default: #f2f2f2;
     --colors-bg: #585858;
     --box-clock-add-button: #03dac6;
+    --box-clock-add-button-hover: #00c0ad;
     --box-clock-cities: #f2f2f2;
     --box-clock-cities-hover: #d3d3d3;
     --clock-hand-seconds: #cf6679;
     --clock-bg: #f2f2f2;
     --clock-border-out: #585858;
     --clock-border-in: #f2f2f2;
-    --remove-clock: #ffffff;
+    --remove-clock: #585858;
     --note-add-button: #cf6679;
+    --note-add-button-hover: #b15061;
+    --icon-button: rgba(0, 0, 0, .3);
+    --icon-button-hover: rgba(0, 0, 0, .5);
+    --icon-button-text: #ffffff;
+    --icon-button-text-hover: #cf6679;
+    --list-themes-boder: rgba(0, 0, 0, .4);
 
     --note-add-button-text: #ffffff;
     
@@ -36,12 +45,15 @@
     --bg: #121212;
     --filter: #333333;
     --settings-button: #242424;
+    --settings-button-hover: #333333;
+    --settings-button-text: #e1e1e1;
     --settings-options: #333333;
     --list-sizes-item: #242424;
     --list-sizes-item-hover: #121212;
     --note-inner-default: #333333;
     --colors-bg: #a4a4a4;
     --box-clock-add-button: #03dac6;
+    --box-clock-add-button-hover: #00c0ad;
     --box-clock-cities: #333333;
     --box-clock-cities-hover: #242424;
     --clock-hand-seconds: #cf6679;
@@ -50,6 +62,12 @@
     --clock-border-in: #a4a4a4;
     --remove-clock: #ffffff;
     --note-add-button: #cf6679;
+    --note-add-button-hover: #b15061;
+    --icon-button: rgba(0, 0, 0, .4);
+    --icon-button-hover: rgba(0, 0, 0, .6);
+    --icon-button-text: #d3d3d3;
+    --icon-button-text-hover: #cf6679;
+    --list-themes-boder: rgba(0, 0, 0, .4);
 
     --note-add-button-text: #ffffff;
     
@@ -280,10 +298,13 @@ button:active {
     line-height: 50px;
     text-align: center;
     border-radius: 50%;
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     color: #000;
     cursor: pointer;
-    font-family: var(--font-family-arial);
+    transition: .1s;
+}
+.box-clock-add button:hover {
+    background: var(--box-clock-add-button-hover);
 }
 .box-clock-add button:focus,
 .box-clock-add button:active {
@@ -329,31 +350,44 @@ button:active {
 .note-flag button {
     background: none;
     border: none;
-    color: #d3d3d3;
-    font-size: 1.2rem;
+    color: var(--text1-color);
+    font-size: 1rem;
 }
 .note-title-options {
     display: flex;
     position: relative;
 }
 .note-remove > button {
-    background: #4383DE;
+    background: var(--icon-button);
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
-    color: #d3d3d3;
+    color: var(--icon-button-text);
     margin-left: 5px;
+    transition: 0.1s;
+}
+.note-remove > button:hover {
+    color: var(--icon-button-text-hover);
+    background: var(--icon-button-hover);
+}
+.note-text {
+    white-space: pre-wrap;
 }
 
 .color-list {
     position: relative;
 }
 .color-list > button {
-    background: #4383DE;
+    background: var(--icon-button);
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
-    color: #d3d3d3;
+    color: var(--icon-button-text);
+    transition: 0.1s;
+}
+.color-list > button:hover {
+    color: var(--icon-button-text-hover);
+    background: var(--icon-button-hover);
 }
 .colors {
     position: absolute;
@@ -399,11 +433,20 @@ button:active {
     display: flex;
     padding: 5px;
 }
+@media (max-width: 768px) {
+    .options {
+        flex-grow: 1;
+    }
+    .box-1,
+    .box-2 {
+        flex-grow: 1;
+    }
+}
 
 .note-add {
     padding-right: 10px;
 }
-.note-add button {
+.note-add > button {
     background: var(--note-add-button);
     border: none;
     color: var(--note-add-button-text);
@@ -412,16 +455,19 @@ button:active {
     border-radius: 5px;
     text-transform: uppercase;
     font-weight: bold;
+    transition: .1s;
+}
+.note-add > button:hover {
+    background: var(--note-add-button-hover);
 }
 .box-notes-add {
     position: fixed;
     left: 10%;
-    bottom: 10px;
-    transform: translateX(-0%);
+    bottom: 20px;
     width: 80%;
     max-width: 600px;
-    background: #fff;
-    border-radius: 10px;
+    background: #000;
+    border-radius: 15px;
     padding: 10px;
     z-index: 300;
 }
@@ -429,12 +475,20 @@ button:active {
 .box-notes-add textarea {
     display: block;
     width: 100%;
-    border: 1px solid #777;
-    border-radius: 4px;
+    background: #333;
+    border: none;
+    border: 2px solid transparent;
+    color: var(--text1-color);
+    border-radius: 6px;
     font-size: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 5px;
     margin-bottom: 10px;
+}
+.box-notes-add input::placeholder,
+.box-notes-add textarea::placeholder {
+    color: var(--text2-color);
+    opacity: 1;
 }
 .box-notes-add textarea {
     resize: none;
@@ -443,6 +497,21 @@ button:active {
 .box-notes-add input:focus,
 .box-notes-add textarea:focus {
     outline: none;
+    border: 2px solid #a4a4a4;
+}
+.note-add-form-button button {
+    background: var(--note-add-button);
+    border: none;
+    color: var(--note-add-button-text);
+    margin-right: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: .1s;
+}
+.note-add-form-button button:hover {
+    background: var(--note-add-button-hover);
 }
 
 .note-filter {
@@ -471,12 +540,17 @@ button:active {
     opacity: 1;
 }
 .note-filter-flag > button {
-    background: #4383DE;
+    background: var(--icon-button);
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
-    color: #d3d3d3;
+    color: var(--icon-button-text);
     margin-right: 5px;
+    transition: 0.1s;
+}
+.note-filter-flag > button:hover {
+    color: var(--icon-button-text-hover);
+    background: var(--icon-button-hover);
 }
 
 .settings {
@@ -489,10 +563,14 @@ button:active {
 .settings button {
     background: var(--settings-button);
     border: none;
-    color: var(--text1-color);
+    color: var(--settings-button-text);
     height: 100%;
     padding: 0 15px;
     border-radius: 5px;
+    transition: .1s;
+}
+.settings button:hover {
+    background: var(--settings-button-hover);
 }
 .settings .settings-options {
     position: absolute;
@@ -514,6 +592,10 @@ button:active {
     height: 20px;
     flex-grow: 1;
     cursor: pointer;
+    border: 2px solid transparent;
+}
+.list-themes > div:hover {
+    border: 2px solid var(--list-themes-boder);
 }
 .list-themes div:first-child {
     border-radius: 5px 0 0 5px;
