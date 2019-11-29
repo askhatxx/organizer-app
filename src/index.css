@@ -1,7 +1,5 @@
 :root {
     --font-family-segoe: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --font-family-arial: Arial, Helvetica, sans-serif;
-
     --padding-box-top: 70px;
     --box-1-width: 60%;
     --box-2-width: 40%;
@@ -17,7 +15,7 @@
     --list-sizes-item: #d3d3d3;
     --list-sizes-item-hover: #e1e1e1;
     --note-inner-default: #f2f2f2;
-    --colors-bg: #585858;
+    --colors-bg: #d3d3d3;
     --box-clock-add-button: #03dac6;
     --box-clock-add-button-hover: #00c0ad;
     --box-clock-cities: #f2f2f2;
@@ -26,17 +24,21 @@
     --clock-bg: #f2f2f2;
     --clock-border-out: #585858;
     --clock-border-in: #f2f2f2;
+    --clock-indicator: #333333;
     --remove-clock: #585858;
     --note-add-button: #cf6679;
     --note-add-button-hover: #b15061;
-    --icon-button: rgba(0, 0, 0, .3);
-    --icon-button-hover: rgba(0, 0, 0, .5);
+    --note-add-form: #f2f2f2;
+    --note-add-form-input: #d3d3d3;
+    --note-add-form-input-focus: #c7c7c7;
+    --icon-button: rgba(0, 0, 0, .2);
+    --icon-button-hover: rgba(0, 0, 0, .4);
     --icon-button-text: #ffffff;
-    --icon-button-text-hover: #cf6679;
+    --icon-button-text-hover: #ffffff;
     --list-themes-boder: rgba(0, 0, 0, .4);
+    --note-filter-flag-check: #000000;
 
-    --note-add-button-text: #ffffff;
-    
+    --note-add-button-text: #ffffff;    
     --text0-color: #000000;
     --text1-color: #333333;
     --text2-color: #585858;
@@ -60,17 +62,21 @@
     --clock-bg: #333333;
     --clock-border-out: #333333;
     --clock-border-in: #a4a4a4;
+    --clock-indicator: #808080;
     --remove-clock: #ffffff;
     --note-add-button: #cf6679;
     --note-add-button-hover: #b15061;
+    --note-add-form: #000000;
+    --note-add-form-input: #333333;
+    --note-add-form-input-focus: #a4a4a4;
     --icon-button: rgba(0, 0, 0, .4);
     --icon-button-hover: rgba(0, 0, 0, .6);
     --icon-button-text: #d3d3d3;
     --icon-button-text-hover: #cf6679;
     --list-themes-boder: rgba(0, 0, 0, .4);
+    --note-filter-flag-check: #03dac6;
 
-    --note-add-button-text: #ffffff;
-    
+    --note-add-button-text: #ffffff;    
     --text0-color: #ffffff;
     --text1-color: #e1e1e1;
     --text2-color: #a4a4a4;
@@ -104,6 +110,7 @@ button:active {
     position: relative;
     color: var(--text1-color);
     background-color: var(--bg);
+    transition: .3s;
 }
 .box-0 {
     position: absolute;
@@ -114,9 +121,11 @@ button:active {
 }
 .box-1 {
     flex: 0 0 var(--box-1-width);
+    transition: .5s;
 }
 .box-2 {
     flex: 0 0 var(--box-2-width);
+    transition: .5s;
 }
 .sizes60x40 {
     --box-1-width: 60%;
@@ -129,6 +138,14 @@ button:active {
 .sizes50x50 {
     --box-1-width: 50%;
     --box-2-width: 50%;
+}
+.sizes75x25 {
+    --box-1-width: 75%;
+    --box-2-width: 25%;
+}
+.sizes25x75 {
+    --box-1-width: 25%;
+    --box-2-width: 75%;
 }
 
 .box-clock {
@@ -154,14 +171,13 @@ button:active {
 .circle {
     width: 200px;
     height: 200px;
-    /* background-color: #fff; */
     background-color: var(--clock-bg);
     border-radius: 50%;
     position: relative;
-    /* border: .35rem solid #000; */
     border: .35rem solid var(--clock-border-out);
     margin: 20px;
     margin-bottom: 5px;
+    transition: .3s;
 }
 .circle::before {
     content: '';
@@ -169,7 +185,6 @@ button:active {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    /* border: .35rem solid #fff; */
     border: .35rem solid var(--clock-border-in);
     box-shadow: inset 0 0 2rem rgba(0, 0, 0, .5);
 }
@@ -219,8 +234,8 @@ button:active {
     transform: translate(-50%, -50%) rotate(var(--deg));
     width: 1%;
     height: 90%;
-    border-top: .60rem solid #000;
-    border-bottom: .60rem solid #000;
+    border-top: .60rem solid var(--clock-indicator);
+    border-bottom: .60rem solid var(--clock-indicator);
     z-index: 1;
 }
 .indicator.indicator1 { --deg: 0deg; }
@@ -275,6 +290,7 @@ button:active {
     list-style: none;
     font-size: 1.2rem;
     z-index: 200;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
 }
 .box-clock-cities li {
     cursor: pointer;
@@ -331,11 +347,14 @@ button:active {
     padding: 10px;
     border-radius: 8px;
     color: var(--text1-color);
+    transition: .3s;
 }
 .note-inner.default {background: var(--note-inner-default);}
 .note-inner.green {background: rgba(46, 225, 90, .5);}
 .note-inner.red {background: rgba(225, 46, 46, .5);}
 .note-inner.blue {background: rgba(55, 166, 234, .5);}
+.note-inner.orange {background: rgba(240, 105, 0, .5);}
+.note-inner.purple {background: rgba(218, 25, 252, .5);}
 .note-head {
     font-weight: bold;
     font-size: 1.2rem;
@@ -423,15 +442,25 @@ button:active {
     font-size: .75rem;
     color: #444;
 }
-.colors .default {background: white;}
+.colors .default {background: #ffffff;}
 .colors .green {background: rgba(46, 225, 90, 1);}
 .colors .red {background: rgba(225, 46, 46, 1);}
 .colors .blue {background: rgba(55, 166, 234, 1);}
+.colors .orange {background: rgba(240, 105, 0, 1);}
+.colors .purple {background: rgba(218, 25, 252, 1);}
+
+.note-filter-color.default .color-list > button {color: #ffffff;}
+.note-filter-color.green .color-list > button {color: rgba(46, 225, 90, 1);}
+.note-filter-color.red .color-list > button {color: rgba(225, 46, 46, 1);}
+.note-filter-color.blue .color-list > button {color: rgba(55, 166, 234, 1);}
+.note-filter-color.orange .color-list > button {color: rgba(240, 105, 0, 1);}
+.note-filter-color.purple .color-list > button {color: rgba(218, 25, 252, 1);}
 
 .options {
     flex: 0 0 var(--box-1-width);
     display: flex;
     padding: 5px;
+    transition: .5s;
 }
 @media (max-width: 768px) {
     .options {
@@ -466,24 +495,38 @@ button:active {
     bottom: 20px;
     width: 80%;
     max-width: 600px;
-    background: #000;
+    background: var(--note-add-form);
     border-radius: 15px;
     padding: 10px;
     z-index: 300;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    transition: .3s;
+    animation: form-move .2s ease-out;
+}
+@keyframes form-move{
+    from {
+        transform: translateY(5%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
 }
 .box-notes-add input,
 .box-notes-add textarea {
     display: block;
     width: 100%;
-    background: #333;
+    background: var(--note-add-form-input);
     border: none;
     border: 2px solid transparent;
     color: var(--text1-color);
     border-radius: 6px;
     font-size: 1rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-family-segoe);
     padding: 5px;
     margin-bottom: 10px;
+    transition: .3s;
 }
 .box-notes-add input::placeholder,
 .box-notes-add textarea::placeholder {
@@ -497,7 +540,7 @@ button:active {
 .box-notes-add input:focus,
 .box-notes-add textarea:focus {
     outline: none;
-    border: 2px solid #a4a4a4;
+    border: 2px solid var(--note-add-form-input-focus);
 }
 .note-add-form-button button {
     background: var(--note-add-button);
@@ -521,6 +564,7 @@ button:active {
     background: var(--filter);
     padding: 5px;
     border-radius: 5px;
+    transition: .3s;
 }
 .note-filter-search {
     flex-grow: 1;
@@ -551,6 +595,9 @@ button:active {
 .note-filter-flag > button:hover {
     color: var(--icon-button-text-hover);
     background: var(--icon-button-hover);
+}
+.note-filter-flag .fa-check-circle {
+    color: var(--note-filter-flag-check);
 }
 
 .settings {
@@ -583,6 +630,7 @@ button:active {
     padding: 10px;
     color: var(--text1-color);
     z-index: 500;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
 }
 
 .list-themes {
@@ -612,6 +660,7 @@ button:active {
 
 .list-sizes {
     margin-top: 15px;
+    font-size: .9rem;
 }
 .list-sizes > div {
     text-align: center;

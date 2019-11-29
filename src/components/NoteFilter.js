@@ -31,6 +31,7 @@ export default class NoteFilter extends Component {
     }
     
     render() {
+        const filterColor = this.props.filterColor;
         return (
             <div className='note-filter'>
                 <div className='note-filter-search'>
@@ -49,7 +50,7 @@ export default class NoteFilter extends Component {
                         {this.state.flag ? <i className="far fa-check-circle"></i> : <i className="far fa-circle"></i>}
                     </button>
                 </div>
-                <div>
+                <div className={`note-filter-color ${filterColor}`}>
                     <ColorList 
                         colorsNote={this.props.colorsNote}
                         changeColorNote={this.changeColor}

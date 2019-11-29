@@ -28,9 +28,9 @@ export default class App extends Component {
             {city: 'Tokyo', timezone: '+9'},
             {city: 'New York', timezone: '-5'}
         ];
-        this.colorsNote = ['default', 'green', 'red', 'blue'];
+        this.colorsNote = ['default', 'green', 'red', 'blue', 'orange', 'purple'];
         this.themes = ['theme-light', 'theme-dark'];
-        this.sizes = ['60x40', '40x60', '50x50'];
+        this.sizes = ['60x40', '40x60', '50x50', '75x25', '25x75'];
 
         const notes = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : initialNotes;
         const clock = localStorage.getItem('clock') ? JSON.parse(localStorage.getItem('clock')) : initialClock;
@@ -146,7 +146,7 @@ export default class App extends Component {
     
     render() {
         const {notes, clock, filter: {text, flag, color}, theme, sizes} = this.state;
-        console.log('render App', this.state.sizes);
+        console.log('render App', this.state.filter);
         const visibleNotes = this.filterText(this.filterFlag(this.filterColor(notes, color), flag), text);
         return (
             <div className={`${theme} sizes${sizes}`}>
@@ -157,6 +157,7 @@ export default class App extends Component {
                             <NoteFilter 
                                 changeFilterNote={this.changeFilterNote}
                                 colorsNote={this.colorsNote}
+                                filterColor={color}
                             />
                         </div>
                         <div className='settings'>
