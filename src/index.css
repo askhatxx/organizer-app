@@ -14,6 +14,7 @@
     --settings-options: #f2f2f2;
     --list-sizes-item: #d3d3d3;
     --list-sizes-item-hover: #e1e1e1;
+    --note-inner-bg: none;
     --note-inner-default: #f2f2f2;
     --colors-bg: #d3d3d3;
     --box-clock-add-button: #03dac6;
@@ -52,6 +53,7 @@
     --settings-options: #333333;
     --list-sizes-item: #242424;
     --list-sizes-item-hover: #121212;
+    --note-inner-bg: none;
     --note-inner-default: #333333;
     --colors-bg: #a4a4a4;
     --box-clock-add-button: #03dac6;
@@ -80,6 +82,90 @@
     --text0-color: #ffffff;
     --text1-color: #e1e1e1;
     --text2-color: #a4a4a4;
+}
+.list-themes .theme-orange-item {
+    background: #f06900;
+}
+.list-themes .theme-purple-item {
+    background: #da19fc;
+}
+.theme-orange {
+    --bg: #f06900;
+    --filter: #ff9b4e;
+    --settings-button: #ffb67e;
+    --settings-button-hover: #ffc69b;
+    --settings-button-text: #ffffff;
+    --settings-options: #ff9b4e;
+    --list-sizes-item: #f06900;
+    --list-sizes-item-hover: #ffb67e;
+    --note-inner-bg: rgba(0, 0, 0, .7);
+    --note-inner-default: #ff9b4e;
+    --colors-bg: #ffb67e;
+    --box-clock-add-button: #ffb67e;
+    --box-clock-add-button-hover: #ffcba3;
+    --box-clock-cities: #ff9b4e;
+    --box-clock-cities-hover: #f06900;
+    --clock-hand-seconds: #f06900;
+    --clock-bg: #ff9b4e;
+    --clock-border-out: #ff9b4e;
+    --clock-border-in: #f06900;
+    --clock-indicator: #ffb67e;
+    --remove-clock: #ffb67e;
+    --note-add-button: #0177d4;
+    --note-add-button-hover: #006abd;
+    --note-add-form: #ff9b4e;
+    --note-add-form-input: #ffb67e;
+    --note-add-form-input-focus: #f06900;
+    --icon-button: rgba(0, 0, 0, .2);
+    --icon-button-hover: rgba(0, 0, 0, .4);
+    --icon-button-text: #ffffff;
+    --icon-button-text-hover: #ffffff;
+    --list-themes-boder: rgba(0, 0, 0, .4);
+    --note-filter-flag-check: #ffffff;
+
+    --note-add-button-text: #ffffff;    
+    --text0-color: #000000;
+    --text1-color: #ffffff;
+    --text2-color: #ffffff;
+}
+.theme-purple {
+    --bg: #da19fc;
+    --filter: #f4b8ff;
+    --settings-button: #f4b8ff;
+    --settings-button-hover: #f8d1ff;
+    --settings-button-text: #ffffff;
+    --settings-options: #e448ff;
+    --list-sizes-item: #da19fc;
+    --list-sizes-item-hover: #f4b8ff;
+    --note-inner-bg: rgba(255, 255, 255, .8);
+    --note-inner-default: #f4b8ff;
+    --colors-bg: #f8d1ff;
+    --box-clock-add-button: #f4b8ff;
+    --box-clock-add-button-hover: #f8d1ff;
+    --box-clock-cities: #e448ff;
+    --box-clock-cities-hover: #da19fc;
+    --clock-hand-seconds: #da19fc;
+    --clock-bg: #f4b8ff;
+    --clock-border-out: #f4b8ff;
+    --clock-border-in: #e448ff;
+    --clock-indicator: #333333;
+    --remove-clock: #ffffff;
+    --note-add-button: #0177d4;
+    --note-add-button-hover: #006abd;
+    --note-add-form: #f4b8ff;
+    --note-add-form-input: #da19fc;
+    --note-add-form-input-focus: #ffffff;
+    --icon-button: rgba(0, 0, 0, .2);
+    --icon-button-hover: rgba(0, 0, 0, .4);
+    --icon-button-text: #ffffff;
+    --icon-button-text-hover: #ffffff;
+    --list-themes-boder: rgba(0, 0, 0, .4);
+    --note-filter-flag-check: #ffffff;
+
+    --note-add-button-text: #ffffff;    
+    --text0-color: #000000;
+    --text1-color: #ffffff;
+    --text2-color: #ffffff;
 }
 
 *, ::after, ::before {
@@ -341,9 +427,14 @@ button:active {
 .note.long {
     flex: 1 0 100%;
 }
+.note-inner-bg {
+    height: 100%;
+    border-radius: 9px;
+    background: var(--note-inner-bg);
+}
 .note-inner {
     height: 100%;
-    background: cornflowerblue;
+    background: #ffffff;
     padding: 10px;
     border-radius: 8px;
     color: var(--text1-color);
@@ -652,10 +743,16 @@ button:active {
     border-radius: 0 5px 5px 0;
 }
 .list-themes .theme-light-item {
-    background: #fff;
+    background: #ffffff;
 }
 .list-themes .theme-dark-item {
-    background: #000;
+    background: #000000;
+}
+.list-themes .theme-orange-item {
+    background: #f06900;
+}
+.list-themes .theme-purple-item {
+    background: #da19fc;
 }
 
 .list-sizes {

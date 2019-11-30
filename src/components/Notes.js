@@ -42,13 +42,15 @@ export default class Notes extends Component {
 
             return (
                 <div key={id} className={clazz}>
-                    <div className={`note-inner ${color}`}>
-                        <div className='note-head'>
-                            <div className='note-flag'>{noteFlag}</div>
-                            <div className='note-title'>{title}</div>
-                            <div>{options}</div>
+                    <div className='note-inner-bg'>
+                        <div className={`note-inner ${color}`}>
+                            <div className='note-head'>
+                                <div className='note-flag'>{noteFlag}</div>
+                                <div className='note-title'>{title}</div>
+                                <div>{options}</div>
+                            </div>
+                            <div className='note-text'>{text}</div>
                         </div>
-                        <div className='note-text'>{text}</div>
                     </div>
                 </div>
             )

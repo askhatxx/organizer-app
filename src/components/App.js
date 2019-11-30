@@ -29,7 +29,7 @@ export default class App extends Component {
             {city: 'New York', timezone: '-5'}
         ];
         this.colorsNote = ['default', 'green', 'red', 'blue', 'orange', 'purple'];
-        this.themes = ['theme-light', 'theme-dark'];
+        this.themes = ['theme-light', 'theme-dark', 'theme-orange', 'theme-purple'];
         this.sizes = ['60x40', '40x60', '50x50', '75x25', '25x75'];
 
         const notes = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : initialNotes;
