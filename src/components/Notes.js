@@ -2,6 +2,24 @@ import React, {Component} from 'react';
 import ColorList from './ColorList';
 
 export default class Notes extends Component {
+    formatDateAddZero(num) {
+        if (num < 10) {
+            return '0' + num;
+        }
+        return num;
+    }
+    
+    formatDate(date) {
+        const noteDate = new Date(+date);
+        const day = this.formatDateAddZero(noteDate.getDate());
+        const month = this.formatDateAddZero(noteDate.getMonth() + 1);
+        const year = noteDate.getFullYear();
+        const hours = this.formatDateAddZero(noteDate.getHours());
+        const minutes = this.formatDateAddZero(noteDate.getMinutes());
+
+        return `${day}.${month}.${year} ${hours}:${minutes}`;
+    }
+
     renderNoteTitleOptions(id) {
         return (
             <div className='note-title-options'>
@@ -31,9 +49,10 @@ export default class Notes extends Component {
     
     renderNotes(notes) {
         const notesList = notes.map((item) => {
-            const {title, text, flag, color, id} = item;
+            const {title, text, date, flag, color, id} = item;
             const noteFlag = this.renderNoteFlag(id, flag);
             const options = this.renderNoteTitleOptions(id);
+            const noteDate = this.formatDate(date);
             let clazz = 'note';
 
             if (title.length > 200 || text.length > 200) {
@@ -50,6 +69,7 @@ export default class Notes extends Component {
                                 <div>{options}</div>
                             </div>
                             <div className='note-text'>{text}</div>
+                            <div className='note-date'><i className="far fa-clock"></i> {noteDate}</div>
                         </div>
                     </div>
                 </div>

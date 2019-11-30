@@ -68,7 +68,7 @@
     --remove-clock: #ffffff;
     --note-add-button: #cf6679;
     --note-add-button-hover: #b15061;
-    --note-add-form: #000000;
+    --note-add-form: #242424;
     --note-add-form-input: #333333;
     --note-add-form-input-focus: #a4a4a4;
     --icon-button: rgba(0, 0, 0, .4);
@@ -82,12 +82,6 @@
     --text0-color: #ffffff;
     --text1-color: #e1e1e1;
     --text2-color: #a4a4a4;
-}
-.list-themes .theme-orange-item {
-    background: #f06900;
-}
-.list-themes .theme-purple-item {
-    background: #da19fc;
 }
 .theme-orange {
     --bg: #f06900;
@@ -201,6 +195,7 @@ button:active {
 .box-0 {
     position: absolute;
     width: 100%;
+    padding-top: 5px;
     z-index: 300;
     display: flex;
     justify-content: space-between;
@@ -438,6 +433,8 @@ button:active {
     padding: 10px;
     border-radius: 8px;
     color: var(--text1-color);
+    display: flex;
+    flex-direction: column;
     transition: .3s;
 }
 .note-inner.default {background: var(--note-inner-default);}
@@ -482,6 +479,15 @@ button:active {
 }
 .note-text {
     white-space: pre-wrap;
+    flex-grow: 1;
+}
+.note-date {
+    margin-top: 12px;
+    font-size: .9rem;
+    opacity: .5;
+}
+.note-date > .far {
+    font-size: .8rem;
 }
 
 .color-list {

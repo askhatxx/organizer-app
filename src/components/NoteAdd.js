@@ -19,6 +19,7 @@ export default class NoteAdd extends Component {
         this.props.addNote({
             title: this.state.formTitle, 
             text: this.state.formText, 
+            date: String(Date.now()), 
             flag: false, 
             color: 'default',
             id: newId

@@ -10,12 +10,12 @@ export default class App extends Component {
         super(props);
 
         const initialNotes = [
-            {title:'Title 1', text:'Text 1', flag: false, color: 'default', id: '11'}, 
-            {title:'Title Title 2', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', flag: false, color: 'default', id: '12'}, 
-            {title:'Title Title Title3', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', flag: false, color: 'default', id: '13'}, 
-            {title:'Title Title 4', text:'Text Title Title Title Title 4', flag: false, color: 'default', id: '14'}, 
-            {title:'Title Title 5', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', flag: false, color: 'default', id: '15'}, 
-            {title:'Title 6', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', flag: false, color: 'default', id: '16'}
+            {title:'Title 1', text:'Text 1', date: '1575133281421', flag: false, color: 'default', id: '11'}, 
+            {title:'Title Title 2', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', date: '1575135251421', flag: false, color: 'default', id: '12'}, 
+            {title:'Title Title Title3', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', date: '1575133251421', flag: false, color: 'default', id: '13'}, 
+            {title:'Title Title 4', text:'Text Title Title Title Title 4', date: '1575139951421', flag: false, color: 'default', id: '14'}, 
+            {title:'Title Title 5', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', date: '1575133251421', flag: false, color: 'default', id: '15'}, 
+            {title:'Title 6', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', date: '1561133251421', flag: false, color: 'default', id: '16'}
         ];
 
         const initialClock = [
@@ -24,9 +24,14 @@ export default class App extends Component {
 
         this.cities = [
             {city: 'Local', timezone: 'local'},
+            {city: 'San Francisco', timezone: '-8'},
+            {city: 'New York', timezone: '-5'},
             {city: 'London', timezone: '+0'},
+            {city: 'Berlin', timezone: '+1'},
+            {city: 'Moscow', timezone: '+3'},
+            {city: 'Beijing', timezone: '+8'},
             {city: 'Tokyo', timezone: '+9'},
-            {city: 'New York', timezone: '-5'}
+            
         ];
         this.colorsNote = ['default', 'green', 'red', 'blue', 'orange', 'purple'];
         this.themes = ['theme-light', 'theme-dark', 'theme-orange', 'theme-purple'];
