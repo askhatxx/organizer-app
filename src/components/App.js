@@ -10,16 +10,15 @@ export default class App extends Component {
         super(props);
 
         const initialNotes = [
-            {title:'Title 1', text:'Text 1', date: '1575133281421', flag: false, color: 'default', id: '11'}, 
-            {title:'Title Title 2', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', date: '1575135251421', flag: false, color: 'default', id: '12'}, 
-            {title:'Title Title Title3', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', date: '1575133251421', flag: false, color: 'default', id: '13'}, 
-            {title:'Title Title 4', text:'Text Title Title Title Title 4', date: '1575139951421', flag: false, color: 'default', id: '14'}, 
-            {title:'Title Title 5', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', date: '1575133251421', flag: false, color: 'default', id: '15'}, 
-            {title:'Title 6', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit', date: '1561133251421', flag: false, color: 'default', id: '16'}
+            {title:'Lorem ipsum dolor sit amet', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', date: '1574937900000', flag: false, color: 'default', id: '31d39f2'}, 
+            {title:'Call friends from Pasadena', text:'Leonard\nSheldon\nPenny\nHoward\nRaj ', date: '1574314080000', flag: true, color: 'green', id: '18fd322'}, 
+            {title:'Bon Jovi - It\'s My Life', text:'This ain\'t a song for the broken-hearted\nNo silent prayer for the faith-departed\nI ain\'t gonna be just a face in the crowd\nYou\'re gonna hear my voice\nWhen I shout it out loud', date: '1570890600000', flag: true, color: 'default', id: '5e49c29'}, 
+            {title:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua', text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', date: '1570266720000', flag: false, color: 'blue', id: '2a15770'}
         ];
 
         const initialClock = [
-            {type: 'analog', city: 'Local', timezone: 'local'}
+            {type: 'analog', city: 'Local', timezone: 'local'},
+            {type: 'analog', city: 'London', timezone: '+0'},
         ];
 
         this.cities = [
@@ -39,7 +38,7 @@ export default class App extends Component {
 
         const notes = localStorage.getItem('notes') ? JSON.parse(localStorage.getItem('notes')) : initialNotes;
         const clock = localStorage.getItem('clock') ? JSON.parse(localStorage.getItem('clock')) : initialClock;
-        const theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : this.themes[1];
+        const theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : this.themes[0];
         const sizes = localStorage.getItem('sizes') ? localStorage.getItem('sizes') : this.sizes[0];
 
         this.state = {
@@ -151,7 +150,6 @@ export default class App extends Component {
     
     render() {
         const {notes, clock, filter: {text, flag, color}, theme, sizes} = this.state;
-        console.log('render App', this.state.filter);
         const visibleNotes = this.filterText(this.filterFlag(this.filterColor(notes, color), flag), text);
         return (
             <div className={`${theme} sizes${sizes}`}>
