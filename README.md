@@ -2,14 +2,6 @@ This project uses ReactJS and localStorage.
 
 Demo: [https://askhatxx.github.io/organizer-app/](https://askhatxx.github.io/organizer-app/)
 
-**Available Scripts**
+**Описание**
 
-In the project directory, you can run:
-
-### `npm start`
-
-### `npm test`
-
-### `npm run build`
-
-### `npm run eject`
+Данное веб-приложение позволяет создавать заметки, отмечать их, менять их цвета, фильтровать по этим параметрам. Также можно добавлять время с разными часовыми поясами. Есть возможность менять тему (цветовую схему). Все эти данные храняться в локальном хранилище браузера и после перезагрузки страницы также доступны.
